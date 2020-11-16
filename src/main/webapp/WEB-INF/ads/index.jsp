@@ -11,6 +11,9 @@
 
 <div class="container">
     <h1>Here Are all the ads!</h1>
+    <c:if test="${category != null}">
+        <h3>In the category of ${category.getTitle()}</h3>
+    </c:if>
 
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">

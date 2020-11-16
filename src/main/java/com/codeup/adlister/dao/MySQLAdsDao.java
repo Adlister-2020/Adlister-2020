@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -31,6 +32,19 @@ public class MySQLAdsDao implements Ads {
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM ads");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> allAdsByCategory(Category category) {
+        PreparedStatement stmt = null;
+        String query = "SELECT * FROM ads WHERE id IN (SELECT ad_id FROM ad_categories WHERE category_id = " + category.getId() + ");";
+        try {
+            stmt = connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
