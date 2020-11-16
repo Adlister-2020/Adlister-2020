@@ -2,7 +2,9 @@ package com.codeup.adlister.models;
 
 import com.codeup.adlister.util.Password;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private long id;
     private String username;
     private String email;
