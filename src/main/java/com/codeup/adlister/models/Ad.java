@@ -1,6 +1,8 @@
 package com.codeup.adlister.models;
 
+
 import java.io.Serializable;
+import com.codeup.adlister.dao.DaoFactory;
 
 public class Ad implements Serializable {
     private long id;
@@ -54,4 +56,5 @@ public class Ad implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

@@ -19,7 +19,7 @@ public class MySQLAdsDao implements Ads {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
                 config.getUrl(),
-                config.getUser(),
+                config.getUsername(),
                 config.getPassword()
             );
         } catch (SQLException e) {
@@ -36,6 +36,17 @@ public class MySQLAdsDao implements Ads {
             return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    public List<Ad> userAds(Long userId){
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement("SELECT * FROM ads WHERE user_id = " + userId +""); //retrieves ads from specific user
+            ResultSet rs = statement.executeQuery();
+            return createAdsFromResults(rs);
+        } catch(SQLException e){
+            throw new RuntimeException("Error retrieving  ads.", e);
         }
     }
 
@@ -67,6 +78,30 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
+    }
+
+    @Override
+    public Ad getAdById(Long adId) {
+        Ad ad = null;
+        String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, adId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()){
+                ad = new Ad(
+                        rs.getLong("id"),
+                        rs.getLong("user_id"),
+                        rs.getString("title"),
+                        rs.getString("description")
+                );
+            }
+        } catch (SQLException e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return ad;
     }
 
     private Ad extractAd(ResultSet rs) throws SQLException {

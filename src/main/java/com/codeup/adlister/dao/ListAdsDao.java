@@ -33,6 +33,11 @@ public class ListAdsDao implements Ads {
         return ad.getId();
     }
 
+    @Override
+    public Ad getAdById(Long adId) {
+        return null;
+    }
+
     private List<Ad> generateAds() {
         List<Ad> ads = new ArrayList<>();
         ads.add(new Ad(
@@ -60,5 +65,9 @@ public class ListAdsDao implements Ads {
             "Must have strong Java skills"
         ));
         return ads;
+    }
+
+   public List<Ad> userAds(Long id){
+        return null;
     }
 }
