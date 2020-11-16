@@ -20,6 +20,9 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
         </form>
+        <form action="/register" method="get">
+            <input type="submit" class="btn btn-secondary btn-block" value="Register">
+        </form>
     </div>
 </body>
 </html>
