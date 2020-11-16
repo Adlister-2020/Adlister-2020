@@ -1,12 +1,16 @@
 package com.codeup.adlister.models;
 
+
+import java.io.Serializable;
 import com.codeup.adlister.dao.DaoFactory;
 
-public class Ad {
+public class Ad implements Serializable {
     private long id;
     private long userId;
     private String title;
     private String description;
+
+    public Ad() {}
 
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
