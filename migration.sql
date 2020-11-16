@@ -6,12 +6,13 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS ad_categories;
 
 CREATE TABLE users (
-
-    id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(240) NOT NULL UNIQUE,
-    email    VARCHAR(240) NOT NULL,
+    email VARCHAR(240) NOT NULL ,
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
+
 );
 
 CREATE TABLE ads (
@@ -26,17 +27,17 @@ CREATE TABLE ads (
 );
 
 CREATE TABLE categories (
-
-    id    INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(240) NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE ad_categories (
-
-    ad_id       INT UNSIGNED NOT NULL,
+  
+    ad_id INT UNSIGNED NOT NULL,
     category_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES categories (id),
-    FOREIGN KEY (ad_id) REFERENCES ads (id)
+    FOREIGN KEY (category_id) REFERENCES categories(id),
+    FOREIGN KEY (ad_id) REFERENCES ads(id)
 );
 
