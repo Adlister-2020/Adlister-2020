@@ -13,6 +13,7 @@
                 <li><a href="/register">Register</a></li>
             </c:if>
             <c:if test="${sessionScope.user.username != null}">
+                <li><a href="/ads/create">Create an Ad</a></li>
                 <li><a href="/profile">${sessionScope.user.username}</a></li>
                 <li><a href="/logout">Log out</a></li>
             </c:if>
