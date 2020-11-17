@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
@@ -61,7 +62,7 @@ public class MySQLCategoriesDao implements Categories {
     }
 
     @Override
-    public void insertToAdCategory(Long adId, Long categoryId) {
+    public void insertToAdCategoryJoinTable(Long adId, Long categoryId) {
         try {
             String insertQuery = "INSERT INTO ad_categories(ad_id, category_id) VALUES (?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery);
@@ -70,6 +71,27 @@ public class MySQLCategoriesDao implements Categories {
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
+        }
+    }
+
+    @Override
+    public List<Category> getCategoriesOfAd(Ad ad) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM categories " +
+                    "WHERE id IN " +
+                    "(SELECT category_id FROM ad_categories WHERE ad_id = " +ad.getId() + ");");
+            ResultSet rs = stmt.executeQuery();
+            List<Category> categories = new ArrayList<>();
+            while (rs.next()) {
+                categories.add(new Category(
+                        rs.getLong("id"),
+                        rs.getString("title")
+                ));
+            }
+            return categories;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
 }

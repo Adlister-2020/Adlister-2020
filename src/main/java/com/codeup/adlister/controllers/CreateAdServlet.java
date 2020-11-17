@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -37,7 +36,7 @@ public class CreateAdServlet extends HttpServlet {
         Long adId = DaoFactory.getAdsDao().insert(ad);
         for (String cat:cats) {
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
-            DaoFactory.getCategoriesDao().insertToAdCategory(adId,category.getId());
+            DaoFactory.getCategoriesDao().insertToAdCategoryJoinTable(adId,category.getId());
         }
 
         response.sendRedirect("/ads");
