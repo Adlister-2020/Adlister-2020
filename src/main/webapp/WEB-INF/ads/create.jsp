@@ -21,9 +21,8 @@
             <div class="form-group">
                 <label>Category</label><br>
                 <c:forEach var="category" items="${categories}">
-                    <input type="checkbox" id="category" name="category" value="${category.getTitle()}">
-                    <label for="category">${category.getCaplizedFirstLetterTitle()}</label><br>
-<%--                    <option value="${category.getTitle()}">${category.getCaplizedFirstLetterTitle()}</option>--%>
+                    <input type="checkbox" id="${category.getTitle()}" name="category" value="${category.getTitle()}">
+                    <label for="${category.getTitle()}">${category.getCaplizedFirstLetterTitle()}</label><br>
                 </c:forEach>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
