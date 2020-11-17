@@ -120,4 +120,18 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+    @Override
+    public List<Ad> getAdsBySearch(String search) {
+        PreparedStatement stmt = null;
+        String query = "SELECT * FROM ads WHERE title LIKE '%" + search + "%' || description LIKE '%" + search + "%'";
+        try {
+            stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads.", e);
+        }
+    }
+
 }
