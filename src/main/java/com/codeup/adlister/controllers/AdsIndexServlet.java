@@ -15,16 +15,15 @@ public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String cat = request.getParameter("category");
+        request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         if (cat != null && !cat.equals("")) {
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
             request.setAttribute("category", category);
-            request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
             request.setAttribute("ads", DaoFactory.getAdsDao().allAdsByCategory(category));
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
             return;
         }
 
-        request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }
