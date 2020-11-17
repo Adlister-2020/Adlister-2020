@@ -59,4 +59,17 @@ public class MySQLCategoriesDao implements Categories {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
+    @Override
+    public void insertToAdCategory(Long adId, Long categoryId) {
+        try {
+            String insertQuery = "INSERT INTO ad_categories(ad_id, category_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            stmt.setLong(1, adId);
+            stmt.setLong(2, categoryId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
+    }
 }
