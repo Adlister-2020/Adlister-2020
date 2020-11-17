@@ -10,7 +10,7 @@
             <label for="${param.id}">${param.id}</label>
             <input id="${param.id}" name="${param.id}" class="form-control" type="${param.type}" style="border-color: red" required>
             <div>
-                Please choose a different ${param.id}.
+                 ${param.message}.
             </div>
         </div>
 

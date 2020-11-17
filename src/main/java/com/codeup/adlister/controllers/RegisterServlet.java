@@ -14,6 +14,7 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
@@ -24,27 +25,36 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
 
+        boolean hasErrors = username.isEmpty() ||
+                email.isEmpty() ||
+                password.isEmpty() ||
+                !passwordConfirmation.equals(password);
+
+
+
         boolean emptyUser = username.isEmpty();
-        if(emptyUser){
-            request.getSession().setAttribute("registerError", "The username field is empty" ); //error register
-            response.sendRedirect("/register");
-            return;
+        if(emptyUser || username == null){
+            request.getSession().setAttribute("usernameError", "The username field is empty" ); //error register
         }
 
         boolean emptyEmail = email.isEmpty();
-        if(emptyEmail){
-            request.getSession().setAttribute("registerError", "The email field is empty or invalid" ); //error register
-            response.sendRedirect("/register");
-            return;
+        if(emptyEmail || email == null){
+            request.getSession().setAttribute("emailError", "The email field is empty or invalid" ); //error register
         }
 
         boolean emptyPass = password.isEmpty();
-        if(emptyPass){
-            request.getSession().setAttribute("registerError", "The password field is empty" ); //error register
+        if(emptyPass ||password == null){
+            request.getSession().setAttribute("passError", "The password field is empty" ); //error register
+        }
+
+        if(!password.equals(passwordConfirmation)){
+            request.getSession().setAttribute("matchError","Passwords do not match");
+        }
+
+        if(hasErrors){
             response.sendRedirect("/register");
             return;
         }
-
         // create and save a new user
         User user = new User(username, email, password);
         request.getSession().setAttribute("user", user);

@@ -12,61 +12,64 @@
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post" class="needs-validation" novalidate>
     <c:choose>
-        <c:when test="${sessionScope.registerError != null}">
+        <c:when test="${sessionScope.usernameError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="username"/>
                 <jsp:param name="type" value="text"/>
+                <jsp:param name="message" value="Please choose a different username"/>
             </jsp:include>
         </c:when>
         <c:otherwise>
             <div class="form-group">
-                <label for="correctUsername">Username</label>
-                <input id="correctUsername" name="username" class="form-control" type="text">
+                <label for="username">Username</label>
+                <input id="username" name="username" class="form-control" type="text">
                 <p>it works</p>
             </div>
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${sessionScope.registerError != null}">
+        <c:when test="${sessionScope.emailError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="email"/>
                 <jsp:param name="type" value="text"/>
+                <jsp:param name="message" value="Please choose a different email"/>
             </jsp:include>
         </c:when>
         <c:otherwise>
             <div class="form-group">
-                <label for="correctEmail">Email</label>
-                <input id="correctEmail" name="correctEmail" class="form-control" type="text" placeholder="email@example.com">
+                <label for="email">Email</label>
+                <input id="email" name="email" class="form-control" type="text" placeholder="email@example.com">
                 <p>it works</p>
             </div>
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${sessionScope.registerError != null}">
+        <c:when test="${sessionScope.passError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="password"/>
                 <jsp:param name="type" value="password"/>
+                <jsp:param name="message" value="Please choose a different password"/>
             </jsp:include>
         </c:when>
         <c:otherwise>
             <div class="form-group">
-                <label for="correctPassword">Password</label>
-                <input id="correctPassword" name="correctPassword" class="form-control" type="password">
+                <label for="password">Password</label>
+                <input id="password" name="password" class="form-control" type="password">
             </div>
         </c:otherwise>
     </c:choose>
     <c:choose>
-
-        <c:when test="${sessionScope.registerError != null}">
+        <c:when test="${sessionScope.matchError != null}">
             <jsp:include page="partials/error.jsp">
-                <jsp:param name="id" value="confirmPassword"/>
+                <jsp:param name="id" value="confirm_password"/>
                 <jsp:param name="type" value="password"/>
+                <jsp:param name="message" value="Passwords do not match"/>
             </jsp:include>
         </c:when>
         <c:otherwise>
             <div class="form-group">
-                <label for="confirm_passwordYes">Confirm Password</label>
-                <input id="confirm_passwordYes" name="confirm_passwordYes" class="form-control" type="password">
+                <label for="confirm_password">Confirm Password</label>
+                <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
         </c:otherwise>
     </c:choose>
