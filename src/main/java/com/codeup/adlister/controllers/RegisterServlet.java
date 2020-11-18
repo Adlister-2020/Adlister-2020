@@ -25,6 +25,7 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
 
+
         boolean hasErrors = username.isEmpty() ||
                 email.isEmpty() ||
                 password.isEmpty() ||
@@ -52,6 +53,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         if(hasErrors){
+
             response.sendRedirect("/register");
             return;
         }

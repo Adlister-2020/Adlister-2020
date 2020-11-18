@@ -37,5 +37,7 @@
             <input type="submit" class="btn btn-secondary btn-block" value="Register">
         </form>
     </div>
+<jsp:include page="partials/footer.jsp"/>
+
 </body>
 </html>
