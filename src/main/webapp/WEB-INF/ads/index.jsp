@@ -29,6 +29,13 @@
                         <div class="list-group-item">
                             <h5>Description</h5>
                             <p class="card-text"><c:out value="${ad.description}"/></p>
+                            <c:if test="${categoriesDao.getCategoriesOfAd(ad) != null}">
+                                <div><strong>Categories: </strong>
+                                    <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
+                                        <span class="bg-secondary p-2 m-2 rounded-pill"><c:out value="${cat.getTitle()}" /></span>
+                                    </c:forEach>
+                                </div>
+                            </c:if>
                         </div>
                         <div class="list-group-item d-flex justify-content-between">
                             <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>View Ad</a>

@@ -21,6 +21,16 @@ public class Category implements Serializable {
         return title;
     }
 
+    public String getCaplizedFirstLetterTitle() {
+        String c = (title != null) ? title.trim() : "";
+        String[] words = c.split(" ");
+        StringBuilder result = new StringBuilder();
+        for (String w : words) {
+            result.append(w.length() > 1 ? w.substring(0, 1).toUpperCase() + w.substring(1).toLowerCase() : w.toUpperCase()).append(" ");
+        }
+        return result.toString().trim();
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
