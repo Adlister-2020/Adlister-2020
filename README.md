@@ -131,6 +131,8 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   4. [ ] Custom error/404 page 
   
   5. [ ] Subcategories 
+  
+  6. [ ] Deployment 
 </details>
 
 ### Database Design
