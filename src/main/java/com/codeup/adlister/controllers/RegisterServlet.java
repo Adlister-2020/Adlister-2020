@@ -29,7 +29,8 @@ public class RegisterServlet extends HttpServlet {
         boolean hasErrors = username.isEmpty() ||
                 email.isEmpty() ||
                 password.isEmpty() ||
-                !passwordConfirmation.equals(password);
+                !passwordConfirmation.equals(password)||
+                DaoFactory.getUsersDao().findByUsername(username) != null;
 
 
 
@@ -59,8 +60,9 @@ public class RegisterServlet extends HttpServlet {
         }
         // create and save a new user
         User user = new User(username, email, password);
-        request.getSession().setAttribute("user", user);
         DaoFactory.getUsersDao().insert(user);
+        User dbUser = DaoFactory.getUsersDao().findByUsername(user.getUsername());
+        request.getSession().setAttribute("user", dbUser);
         response.sendRedirect("/login");
     }
 }

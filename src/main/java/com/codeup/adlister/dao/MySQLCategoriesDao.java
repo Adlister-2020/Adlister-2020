@@ -70,7 +70,7 @@ public class MySQLCategoriesDao implements Categories {
             stmt.setLong(2, categoryId);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error creating a new ad.", e);
+            throw new RuntimeException("Error creating a new ad Category.", e);
         }
     }
 
@@ -92,6 +92,53 @@ public class MySQLCategoriesDao implements Categories {
             return categories;
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    @Override
+    public void seedCategoriesDb(){
+      List<String> seedList = new ArrayList<>();
+      seedList.add("Baby & Kids");
+      seedList.add("Furniture");
+      seedList.add("Clothing");
+      seedList.add("Cars & Trucks");
+      seedList.add("Electronics");
+      seedList.add("Jewelry");
+      seedList.add("Appliances");
+      seedList.add("Tools");
+      seedList.add("Free");
+      seedList.add("Pets");
+
+      List<Category> dbList = all();
+//      seed full list if database is empty
+      if(dbList.size()<1){
+        for(String title : seedList){
+            insertIntoCategories(title);
+        }
+//        seed missing categories into database if not empty
+      }else{
+        for(Category c : dbList){
+          for(String title : seedList){
+              if(!seedList.contains(c.getTitle())){
+                  insertIntoCategories(title);
+              }
+          }
+        }
+      }
+    }
+
+    @Override
+    public long insertIntoCategories(String title){
+        try {
+            String query = "INSERT INTO categories(title) VALUES (?)";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,title);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new category.", e);
         }
     }
 }

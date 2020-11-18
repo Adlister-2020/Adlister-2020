@@ -15,6 +15,7 @@ public class CategoriesIndexServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        DaoFactory.getCategoriesDao().seedCategoriesDb();
         request.setAttribute("categories", DaoFactory.getCategoriesDao().all());
         request.getRequestDispatcher("/WEB-INF/ads/showCategories.jsp").forward(request, response);
     }
