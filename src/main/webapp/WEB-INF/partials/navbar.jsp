@@ -17,7 +17,7 @@
                 <li class="nav-item"><a class="nav-link" href="/profile">${sessionScope.user.username}</a></li>
                 <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
             </c:if>
-
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
         </ul>
     </div>
 </nav>

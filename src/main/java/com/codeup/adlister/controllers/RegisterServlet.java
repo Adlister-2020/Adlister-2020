@@ -53,7 +53,6 @@ public class RegisterServlet extends HttpServlet {
         }
 
         if(hasErrors){
-
             response.sendRedirect("/register");
             return;
         }

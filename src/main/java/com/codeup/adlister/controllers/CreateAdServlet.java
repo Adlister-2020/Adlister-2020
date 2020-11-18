@@ -26,14 +26,32 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
+        // need input validation and error messages with empty title here
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),
             request.getParameter("description")
         );
 
-        String[] cats = request.getParameterValues("category");
         Long adId = DaoFactory.getAdsDao().insert(ad);
+
+        // get category array from checkbox result
+        String[] cats = request.getParameterValues("category");
+
+        boolean CreateAdHasErrors = request.getParameter("title").isEmpty() ||
+                (request.getParameter("title") == null) ||
+                (cats == null);
+
+        if(cats == null){
+            request.getSession().setAttribute("noCategoryError", "Please choose at least one category");
+        } // need set error messages in create.jsp
+
+        if(CreateAdHasErrors){
+            response.sendRedirect("/ads/create");
+            return;
+        }
+
+
         for (String cat:cats) {
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
             DaoFactory.getCategoriesDao().insertToAdCategoryJoinTable(adId,category.getId());
