@@ -20,4 +20,8 @@ public interface Ads {
 
     // get a specific ad
     Ad getAdById(Long adId);
+
+
+    List<Ad> getAdsBySearch(String search);
+
 }
