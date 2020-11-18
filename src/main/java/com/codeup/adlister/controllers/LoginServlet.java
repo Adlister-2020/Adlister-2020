@@ -27,6 +27,15 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
+
+//        test if any error exists
+        boolean nullUser = (user == null);
+
+        boolean hasErrors = nullUser ||
+                username.isEmpty() ||
+                !username.equals(user.getUsername());
+
+
         if (user == null) {
             response.sendRedirect("/login");
             return;
@@ -34,10 +43,21 @@ public class LoginServlet extends HttpServlet {
 
         boolean validAttempt = Password.check(password, user.getPassword());
 
-        if (validAttempt) {
+        //tests for specific errors
+        if(username.isEmpty()){
+            request.getSession().setAttribute("userError", "username is blank");
+        }
+
+        if(!username.equals(user.getUsername())){
+            request.getSession().setAttribute("matchError", "username is false");
+        }
+
+
+        if (validAttempt && !hasErrors) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         } else {
+            request.getSession().setAttribute("passError", "password is blank");
             response.sendRedirect("/login");
         }
     }
