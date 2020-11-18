@@ -11,10 +11,10 @@
 
 <div class="container">
 
-    <h1>Here Are all the ads!</h1>
-    <c:if test="${category != null}">
-        <h3>In the category of ${category.getTitle()}</h3>
-    </c:if>
+<%--    <h1>Here Are all the ads!</h1>--%>
+<%--    <c:if test="${category != null}">--%>
+<%--        <h3>In the category of ${category.getTitle()}</h3>--%>
+<%--    </c:if>--%>
 
     <div class="row d-flex justify-content-center">
         <h1 class="text-center my-3">Here Are all the ads!</h1>
