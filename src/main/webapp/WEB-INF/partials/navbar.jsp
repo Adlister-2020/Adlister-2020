@@ -17,8 +17,7 @@
                 <li><a href="/profile">${sessionScope.user.username}</a></li>
                 <li><a href="/logout">Log out</a></li>
             </c:if>
-
-
+            <li><a href="/about">About</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
