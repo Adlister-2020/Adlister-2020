@@ -122,6 +122,15 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public Ad update(Ad ad) {
+        return null;
+    }
+
+    @Override
+    public Ad destroy(Ad ad) {
+        return null;
+    }
+  
     public List<Ad> getAdsBySearch(String search) {
         PreparedStatement stmt = null;
         String query = "SELECT * FROM ads WHERE title LIKE '%" + search + "%' || description LIKE '%" + search + "%'";
