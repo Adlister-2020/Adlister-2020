@@ -1,5 +1,5 @@
 # About the Project
-This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRUD functionality.
+This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRUD functionalities.
 
 
 ## Table of Contents
@@ -132,7 +132,9 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   
   5. [ ] Subcategories 
   
-  6. [ ] Deployment 
+  6. [ ] Super admin 
+  
+  7. [ ] Deployment 
 </details>
 
 ### Database Design
