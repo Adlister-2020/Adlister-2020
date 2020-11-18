@@ -142,34 +142,29 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
 </details>
 
 ### Contribution
-#####This list is in **alphabetical order**
-- Li Wang  
-[github](https://github.com/liliwang1)
+**This list is in alphabetical order**
+- Li Wang  [GitHub](https://github.com/liliwang1)
   - User can choose categories when creating and ad.
   - Display categories of each ad.
   - User can search ads by each category.
   - Add README.md.
   
-- Michael Klanica  
-[github](https://github.com/michaelklanica)
+- Michael Klanica  [GitHub](https://github.com/michaelklanica)
   - .
   - .
   - .
   
-- Robert De laRosa  
-[github](https://github.com/rdelarosa3)
+- Robert De laRosa  [GitHub](https://github.com/rdelarosa3)
   - .
   - .
   - .
   
-- Rocco Paccione  
-[github](https://github.com/roccopaccione)
+- Rocco Paccione  [GitHub](https://github.com/roccopaccione)
   - .
   - .
   - .
   
-- Thomas Levi Crowder  
-[github](https://github.com/ThomasCrowder703)
+- Thomas Levi Crowder  [GitHub](https://github.com/ThomasCrowder703)
   - .
   - .
   - .
