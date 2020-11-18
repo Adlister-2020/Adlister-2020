@@ -70,4 +70,14 @@ public class ListAdsDao implements Ads {
    public List<Ad> userAds(Long id){
         return null;
     }
+
+    @Override
+    public Ad update(Ad ad) {
+        return this.update(ad);
+    }
+
+    @Override
+    public Ad destroy(Ad ad) {
+        return this.destroy(ad);
+    }
 }

@@ -24,20 +24,46 @@
                 <h4 class="card-title"><c:out value="${ad.title}"/></h4>
             </div>
             <div class="list-group-item">
-                Show Users Info here needed from need to get user by id on user ad dao
+                Show Users Info here needed from need to get user by id on user ad dao (Price or username)
             </div>
             <div class="list-group-item">
                 <h5>Description</h5>
                 <p class="card-text"><c:out value="${ad.description}"/></p>
+                <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#editModal">
+                    Edit
+                </button>
             </div>
             <div class="list-group-item d-flex justify-content-between">
                 <a href="/ads" class="card-link">View All Ads</a>
                 <a href="#" class="card-link">Link to users profile</a>
             </div>
+<%--            Edit Pop-up Modal --%>
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><c:out value="${ad.title}"/></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+<%--                            Ad Description for editing in modal--%>
+                            <c:out value="${ad.description}"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     
 </div>
 <jsp:include page="/WEB-INF/partials/head.jsp"/>
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
 </body>
 </html>

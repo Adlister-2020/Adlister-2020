@@ -120,4 +120,14 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+    @Override
+    public Ad update(Ad ad) {
+        return null;
+    }
+
+    @Override
+    public Ad destroy(Ad ad) {
+        return null;
+    }
 }

@@ -21,4 +21,7 @@ public interface Ads {
     // get a specific ad
     Ad getAdById(Long adId);
 
+    Ad update (Ad ad);
+    Ad destroy (Ad ad);
+
 }
