@@ -29,7 +29,8 @@ public class RegisterServlet extends HttpServlet {
         boolean hasErrors = username.isEmpty() ||
                 email.isEmpty() ||
                 password.isEmpty() ||
-                !passwordConfirmation.equals(password);
+                !passwordConfirmation.equals(password)||
+                DaoFactory.getUsersDao().findByUsername(username) != null;
 
 
 
