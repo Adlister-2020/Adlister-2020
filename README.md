@@ -145,28 +145,47 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
 
 ### Contribution
 **This list is in alphabetical order**
-- Li Wang  [GitHub](https://github.com/liliwang1)
-  - User can choose categories when creating and ad.
-  - Display categories of each ad.
-  - User can search ads by each category.
-  - Add README.md.
+<details>
+  <summary>Li Wang  <a href="https://github.com/liliwang1" target="_blank">GitHub</a></summary>
   
-- Michael Klanica  [GitHub](https://github.com/michaelklanica)
-  - .
-  - .
-  - .
+  1. User can choose categories when creating and ad.  
+  2. Display categories of each ad.
+  3. User can search ads by each category.
+  4. Add README.md.
+</details>
+
+<details>
+  <summary>Michael Klanica <a href="https://github.com/michaelklanica" target="_blank">GitHub</a></summary>
+
+  1.  
+  2. 
+  3. 
+  4. 
+</details>
+
+<details>
+  <summary>Robert De laRosa <a href="https://github.com/rdelarosa3" target="_blank">GitHub</a></summary>
+
+  1.  
+  2. 
+  3. 
+  4. 
+</details>
   
-- Robert De laRosa  [GitHub](https://github.com/rdelarosa3)
-  - .
-  - .
-  - .
-  
-- Rocco Paccione  [GitHub](https://github.com/roccopaccione)
-  - .
-  - .
-  - .
-  
-- Thomas Levi Crowder  [GitHub](https://github.com/ThomasCrowder703)
-  - .
-  - .
-  - .
+<details>
+  <summary>Rocco Paccione <a href="https://github.com/roccopaccione" target="_blank">GitHub</a></summary>
+
+  1.  
+  2. 
+  3. 
+  4. 
+</details>
+ 
+<details>
+  <summary>Thomas Levi Crowder <a href="https://github.com/ThomasCrowder703" target="_blank">GitHub</a></summary>
+
+  1.  
+  2. 
+  3. 
+  4. 
+</details>
