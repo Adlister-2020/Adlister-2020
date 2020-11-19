@@ -19,10 +19,15 @@ public class ViewProfileServlet extends HttpServlet {
         User profileOwner = null;
         // redirect unregistered users to login
         if (request.getSession().getAttribute("user") == null) {
+            String callbackUrl = request.getRequestURI();
+            if(!request.getQueryString().isEmpty() || request.getQueryString()!=null){
+                callbackUrl += "?"+request.getQueryString();
+            }
+            request.getSession().setAttribute("callbackUrl",callbackUrl);
+            System.out.println(callbackUrl);
             response.sendRedirect("/login");
             return;
         }
-        System.out.println(request.getParameter("author"));
         // if ad userId parameter set profile owner to author else profile owner is the logged in user
         if (request.getParameter("author") != null ){
            profileOwner = DaoFactory.getUsersDao().findByUserId(Long.parseLong(request.getParameter("author")));
