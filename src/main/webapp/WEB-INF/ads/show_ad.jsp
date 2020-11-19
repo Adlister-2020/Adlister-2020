@@ -62,7 +62,7 @@
             </div>
             <div class="list-group-item d-flex justify-content-between">
                 <a href="/ads" class="card-link">View All Ads</a>
-                <a href="#" class="card-link">Link to users profile</a>
+                <p>Created: <c:out value="${ad.creation}"/> </p>
             </div>
 <%--            Edit Pop-up Modal --%>
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
