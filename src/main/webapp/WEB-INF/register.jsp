@@ -23,12 +23,11 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text">
-                <p>it works</p>
             </div>
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${sessionScope.emailError != null}">
+        <c:when test="${sessionScope.userError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="email"/>
                 <jsp:param name="type" value="text"/>
@@ -39,7 +38,6 @@
             <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" name="email" class="form-control" type="text" placeholder="email@example.com">
-                <p>it works</p>
             </div>
         </c:otherwise>
     </c:choose>
