@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 //            return;
 //        }
 
+
         //testing for errors
         boolean hasErrors = username2.isEmpty() ||
                 DaoFactory.getUsersDao().findByUsername(username2) == null;
@@ -74,3 +75,10 @@ public class LoginServlet extends HttpServlet {
 
     }
 }
+
+//  ****** ad to code after tc has pushed *******
+//        request.getSession().setAttribute("user", user);
+//        if(request.getSession().getAttribute("callbackUrl")!=null){
+//        response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
+//        }
+//        response.sendRedirect("/profile");

@@ -1,6 +1,7 @@
 package com.codeup.adlister.util;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Image;
 import com.codeup.adlister.models.User;
 import com.github.javafaker.Faker;
 import java.util.Random;
@@ -64,7 +65,22 @@ public class Seeds {
         System.out.println();
         System.out.println("ADS COMPLETE");
         //    ********** Images CATEGORIES *********
+        System.out.println("SEEDING IMAGES FOR ADS TO DB");
+        for (int i = 1; i <= DaoFactory.getAdsDao().all().size(); i++) {
+            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg());
+            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg());
+            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg());
+            System.out.print(".");
+        }
+        System.out.println();
         System.out.println("DONE... EXITING SEEDS");
+    }
+
+    public static long randomImg(){
+        Faker faker = new Faker();
+        String imageUrl = "https://loremflickr.com/800/600/" + faker.commerce().material();
+        Image img = new Image(imageUrl);
+        return DaoFactory.getImagesDao().insert(img);
     }
 
 

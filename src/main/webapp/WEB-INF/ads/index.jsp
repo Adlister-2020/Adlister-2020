@@ -20,8 +20,34 @@
         <h1 class="text-center my-3">Here Are all the ads!</h1>
         <c:forEach var="ad" items="${ads}">
             <div class=" col-12 my-3">
-                <div class="card shadow d-flex justify-content-center" style="width: 100%;">
+                <div class="card shadow d-flex justify-content-center" style="width: 18rem;">
                         <%--        <img class="card-img-top" src="..." alt="Card image cap">--%>
+                    <div id="carousel<c:out value="${ad.id}"/>" class="carousel slide carousel-fade" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <c:forEach items="${ad.getImages()}" var="img" varStatus="loop">
+                                <c:choose>
+                                    <c:when test="${loop.index == 0}">
+                                        <div class="carousel-item active">
+                                            <img src="${img.url}" class="d-block w-100" alt="...">
+                                        </div>
+                                    </c:when>
+                                    <c:when test="${loop.index > 0}">
+                                        <div class="carousel-item">
+                                            <img src="${img.url}" class="d-block w-100" alt="...">
+                                        </div>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel<c:out value="${ad.id}"/>" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel<c:out value="${ad.id}"/>" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                     <div class="list-group list-group-flush">
                         <div class="list-group-item">
                             <h4 class="card-title"><c:out value="${ad.title}"/></h4>
@@ -34,7 +60,7 @@
                                     <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
                                         <span class="bg-secondary p-2 m-2 rounded-pill">
                                             <a class="text-white" href="<c:url value='/ads?category=${cat.getTitle()}'/>">
-                                                <c:out value="${cat.getTitle()}" />
+                                                <c:out value="${cat.getCaplizedFirstLetterTitle()}" />
                                             </a>
                                         </span>
                                     </c:forEach>

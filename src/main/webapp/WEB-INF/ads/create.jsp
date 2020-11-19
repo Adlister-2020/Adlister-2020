@@ -22,7 +22,7 @@
                 <label>Category(required)</label><br>
                 <c:forEach var="category" items="${categories}">
                     <input type="checkbox" id="${category.getTitle()}" name="category" value="${category.getTitle()}">
-                    <label for="${category.getTitle()}">${category.getCaplizedFirstLetterTitle()}</label><br>
+                    <label for="${category.getTitle()}"><c:out value="${category.getCaplizedFirstLetterTitle()}" /></label><br>
                 </c:forEach>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
