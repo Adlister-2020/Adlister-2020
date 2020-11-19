@@ -11,10 +11,8 @@
 
     <div class="container">
         <div class="col-md-4">
-<%--                <img src="${pageContext.servletContext.contextPath}/src/main/resources/img/default_avatar.jpg" alt="Avatar" class="rounded-circle">--%>
-                <br>
-                <br>
-                <p> Joined on: </p>
+                <img src="<c:out value="${profileOwner.avatar}"/>" class="rounded-circle" width="200px;" height="200px">
+                <p> Joined on: <c:out value="${profileOwner.creation}"/></p>
                 <c:if test = "${profileOwner.id == sessionScope.user.id}">
                     <a href="/profile/update">Edit Profile</a>
                     <a href="/profile/settings">Settings</a>

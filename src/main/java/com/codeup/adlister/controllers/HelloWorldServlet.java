@@ -11,5 +11,6 @@ import java.io.IOException;
 public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("/ads");
+
     }
 }

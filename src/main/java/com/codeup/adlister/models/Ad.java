@@ -57,4 +57,8 @@ public class Ad implements Serializable {
         this.description = description;
     }
 
+    public User getAuthor(){
+        return DaoFactory.getUsersDao().findByUserId(this.userId);
+    }
+
 }
