@@ -25,7 +25,7 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
 
-
+//testing for errors
         boolean hasErrors = username.isEmpty() ||
                 email.isEmpty() ||
                 password.isEmpty() ||
@@ -33,30 +33,35 @@ public class RegisterServlet extends HttpServlet {
                 DaoFactory.getUsersDao().findByUsername(username) != null;
 
 
-
+//handling specific errors
         boolean emptyUser = username.isEmpty();
         if(emptyUser || username == null){
-            request.getSession().setAttribute("usernameError", "The username field is empty" ); //error register
+            request.setAttribute("usernameError", "The username field is empty" ); //error register
         }
 
         boolean emptyEmail = email.isEmpty();
         if(emptyEmail || email == null){
-            request.getSession().setAttribute("emailError", "The email field is empty or invalid" ); //error register
+            request.setAttribute("emailError", "The email field is empty or invalid" ); //error register
         }
 
         boolean emptyPass = password.isEmpty();
         if(emptyPass ||password == null){
-            request.getSession().setAttribute("passError", "The password field is empty" ); //error register
+            request.setAttribute("passError", "The password field is empty" ); //error register
         }
 
         if(!password.equals(passwordConfirmation)){
-            request.getSession().setAttribute("matchError","Passwords do not match");
+            request.setAttribute("matchError","Passwords do not match");
         }
 
         if(hasErrors){
-            response.sendRedirect("/register");
+            try{
+                request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
+            }catch (ServletException e){
+                e.printStackTrace();
+            }
             return;
         }
+
         // create and save a new user
         User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);

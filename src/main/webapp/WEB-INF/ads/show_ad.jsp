@@ -19,6 +19,32 @@
 <div class="container d-flex justify-content-center">
     <div class="card d-flex justify-content-center" style="width: 80%;">
 <%--        <img class="card-img-top" src="..." alt="Card image cap">--%>
+        <div id="carousel<c:out value="${ad.id}"/>" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <c:forEach items="${ad.getImages()}" var="img" varStatus="loop">
+                    <c:choose>
+                        <c:when test="${loop.index == 0}">
+                            <div class="carousel-item active">
+                                <img src="${img.url}" class="d-block w-100" alt="...">
+                            </div>
+                        </c:when>
+                        <c:when test="${loop.index > 0}">
+                            <div class="carousel-item">
+                                <img src="${img.url}" class="d-block w-100" alt="...">
+                            </div>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
+            </div>
+            <a class="carousel-control-prev" href="#carousel<c:out value="${ad.id}"/>" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel<c:out value="${ad.id}"/>" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
         <div class="list-group list-group-flush">
             <div class="list-group-item">
                 <h4 class="card-title"><c:out value="${ad.title}"/></h4>
@@ -41,6 +67,7 @@
             </div>
             <div class="list-group-item d-flex justify-content-between">
                 <a href="/ads" class="card-link">View All Ads</a>
+
                 <c:if test="${sessionScope.user.id == ad.userId}">
                     <a href="#"><button type="button" id="deleteBtn" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
                         Delete
@@ -48,6 +75,9 @@
                 </c:if>
 
                 <a href="#" class="card-link">Link to users profile</a>
+
+                <p>Created: <c:out value="${ad.creation}"/> </p>
+
             </div>
 <%--            Edit Pop-up Modal --%>
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
