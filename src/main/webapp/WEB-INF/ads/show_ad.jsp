@@ -45,14 +45,15 @@
                     <div class="modal-content" >
                         <form action="/ad-update" method="POST">
                             <div class="modal-header">
-                               <input id="title exampleModalLabel" name="title" class="modal-title" value="<c:out value='${ad.title}'/>">
+                               <input id="id" name="addId" type="text" value="<c:out value='${ad.id}'/>">
+                               <input id="title" name="title" class="modal-title" value="<c:out value='${ad.title}'/>">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
     <%--                            Ad Description for editing in modal--%>
-                                <input id="description" name="description" class="modal-title" value="<c:out value='${ad.title}'/>">
+                                <input id="description" name="description" class="modal-title" value="<c:out value='${ad.description}'/>">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

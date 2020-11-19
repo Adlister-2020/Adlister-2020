@@ -17,12 +17,16 @@ public class UpdateAdServlet extends HttpServlet {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
-        int id = Integer.parseInt(request.getParameter("id"));
+        long addId = Long.parseLong(request.getParameter("addId"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-
-        Ad ad = new Ad(id, title, description);
+        System.out.println(addId);
+        Ad ad = new Ad(addId, title, description);
+        System.out.println(ad.getId());
+        System.out.println(ad.getTitle());
+        System.out.println(ad.getDescription());
         DaoFactory.getAdsDao().updateAd(ad);
-        response.sendRedirect("/ads/ad/?adId=" + ad.getId());
+        response.sendRedirect("/ads/ad?adId=" + addId);
+
     }
 }
