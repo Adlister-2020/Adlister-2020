@@ -53,7 +53,7 @@ CREATE TABLE images (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE ad_categories (
+CREATE TABLE ad_images (
     ad_id INT UNSIGNED NOT NULL,
     image_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (image_id) REFERENCES images(id),
