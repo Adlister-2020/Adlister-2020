@@ -34,7 +34,7 @@
                                     <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
                                         <span class="bg-secondary p-2 m-2 rounded-pill">
                                             <a class="text-white" href="<c:url value='/ads?category=${cat.getTitle()}'/>">
-                                                <c:out value="${cat.getTitle()}" />
+                                                <c:out value="${cat.getCaplizedFirstLetterTitle()}" />
                                             </a>
                                         </span>
                                     </c:forEach>
