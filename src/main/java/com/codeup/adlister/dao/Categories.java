@@ -19,5 +19,8 @@ public interface Categories {
     List<Category> getCategoriesOfAd(Ad ad);
 
     // insert a new category and return the new category's id
-//    Long insert(Category ad);
+    long insertIntoCategories(String title);
+
+    // seed categories
+    void seedCategoriesDb();
 }

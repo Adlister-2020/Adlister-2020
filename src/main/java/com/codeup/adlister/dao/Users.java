@@ -9,4 +9,6 @@ public interface Users {
     Long insert(User user);
     void updateUser(User user);
     User findByUserId(Long id);
+    void deleteUser(User user);
+    List<User> all();
 }
