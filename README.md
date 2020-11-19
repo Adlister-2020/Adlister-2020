@@ -1,12 +1,18 @@
 # About the Project
-This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRUD functionalities.
+This is a Craigslist / Offerup Clone using Java EE and MVC pattern to implement CRUD functionalities.
 
 
 ## Table of Contents
-1. [User Stories](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#user-stories)
-2. [Feature List](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#feature-list)
-3. [Database Design](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#database-design)
-4. [Contribution](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#contribution)
+1. [Setup Instruction](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#setup-instruction)
+2. [User Stories](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#user-stories)
+3. [Feature List](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#feature-list)
+4. [Database Design](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#database-design)
+5. [Contribution](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#contribution)
+
+### Setup Instruction
+Clone repo, open with Intellij, run the *migration.sql* to set up the database, run main method in *Seeds.java* to load data, then start Tomcat server to view application.
+
+Make sure to set up Tomcat and MySQL correctly. 
 
 ### User Stories
 <details>
@@ -22,7 +28,7 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   
   5. [x] As a **guest**, when I ***click the register button*** I expect to ***be able to register***. 
   
-  6. [ ] As a **guest**, when I ***click the about page*** I expect to ***see About Us page***. 
+  6. [x] As a **guest**, when I ***click the about page*** I expect to ***see About Us page***. 
 </details>
 
 <details>
@@ -44,7 +50,7 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   
   8. [x] As a **user**, when I ***click log out*** I expect to ***log out***. 
   
-  9. [ ] As a **user**, when I ***click delete account*** I expect to ***delete my account***. 
+  9. [x] As a **user**, when I ***click delete account*** I expect to ***delete my account***. 
 </details>
 
 <details>
@@ -112,13 +118,13 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   
   16. [x] Allow an Ad to have many categories
   
-  17. [ ] Allow an Ad to have an image
+  17. [x] Allow an Ad to have an image
   
   18. [ ] Intended Redirects
   
   19. [ ] Mobile responsiveness
   
-  20. [ ] Allow users to delete account
+  20. [x] Allow users to delete account
 </details>
 
 <details>
@@ -154,6 +160,7 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   2. Display categories of each ad.
   3. User can search ads by each category.
   4. Add README.md.
+  5. Add About page.
 </details>
 
 <details>
