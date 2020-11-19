@@ -2,6 +2,8 @@ package com.codeup.adlister.models;
 
 
 import java.io.Serializable;
+import java.util.List;
+
 import com.codeup.adlister.dao.DaoFactory;
 
 public class Ad implements Serializable {
@@ -61,4 +63,7 @@ public class Ad implements Serializable {
         return DaoFactory.getUsersDao().findByUserId(this.userId);
     }
 
+    public List<Image> getImages(){
+       return DaoFactory.getImagesDao().imagesByAdId(this.getId());
+    }
 }

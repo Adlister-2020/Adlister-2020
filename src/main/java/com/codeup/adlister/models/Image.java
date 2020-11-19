@@ -4,6 +4,9 @@ public class Image {
     private long id;
     private String url;
 
+    public Image(String url){
+        this.url = url;
+    }
     public Image(long id, String url) {
         this.id = id;
         this.url = url;

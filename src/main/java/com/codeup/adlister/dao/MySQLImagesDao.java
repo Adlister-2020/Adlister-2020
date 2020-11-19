@@ -59,6 +59,21 @@ public class MySQLImagesDao implements Images{
     }
 
     @Override
+    public Long insert(Image image) {
+        try {
+            String insertQuery = "INSERT INTO images(url) VALUES (?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, image.getUrl());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
+    }
+
+    @Override
     public void deleteImage(Image image) {
         String query = "DELETE from images WHERE id = ?";
         try
@@ -69,6 +84,32 @@ public class MySQLImagesDao implements Images{
         } catch (SQLException e) {
             // log the exception
             throw new RuntimeException("Error creating deleting image", e);
+        }
+    }
+
+    @Override
+    public void insertToAdImages(Long adId, Long imgId) {
+        try {
+            String insertQuery = "INSERT INTO ad_images(ad_id, image_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            stmt.setLong(1, adId);
+            stmt.setLong(2, imgId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad Category.", e);
+        }
+    }
+    @Override
+    public List<Image> imagesByAdId(long adId){
+        PreparedStatement stmt = null;
+        try {
+            String query = "SELECT * FROM images WHERE id IN (SELECT image_id from ad_images WHERE ad_id = ?)";
+            stmt = connection.prepareStatement(query);
+            stmt.setLong(1, adId);
+            ResultSet rs = stmt.executeQuery();
+            return createImgsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
 
