@@ -77,12 +77,10 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
-    public Ad update(Ad ad) {
-        return this.update(ad);
+    public void updateAd(int id, String title, String description) {
     }
 
     @Override
-    public Ad destroy(Ad ad) {
-        return this.destroy(ad);
+    public void destroyAd(Ad ad) {
     }
 }
