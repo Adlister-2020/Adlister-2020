@@ -3,6 +3,7 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.dao.MySQLAdsDao;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,16 +18,18 @@ public class UpdateAdServlet extends HttpServlet {
         if (request.getSession().getAttribute("user") == null) {
             response.sendRedirect("/login");
         }
-        long addId = Long.parseLong(request.getParameter("addId"));
+//        Checking if User id and ad user's id matches for editing
+        int adId = Integer.parseInt(request.getParameter("addId"));
+        Ad adCheckUser = DaoFactory.getAdsDao().getAdById((long) adId);
+        User userCheck = (User) request.getSession().getAttribute("user");
+        if (adCheckUser.getUserId() != userCheck.getId()) {
+            response.sendRedirect("/profile");
+        }
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        System.out.println(addId);
-        Ad ad = new Ad(addId, title, description);
-        System.out.println(ad.getId());
-        System.out.println(ad.getTitle());
-        System.out.println(ad.getDescription());
-        DaoFactory.getAdsDao().updateAd(ad);
-        response.sendRedirect("/ads/ad?adId=" + addId);
+
+        DaoFactory.getAdsDao().updateAd(adId, title, description);
+        response.sendRedirect("/ads/ad?adId=" + adId);
 
     }
 }

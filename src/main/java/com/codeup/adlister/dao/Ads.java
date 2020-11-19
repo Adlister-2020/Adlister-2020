@@ -22,7 +22,7 @@ public interface Ads {
     Ad getAdById(Long adId);
 
 
-    void updateAd(Ad ad);
+    void updateAd(int id, String title, String description);
 
     void destroyAd(Ad ad);
 

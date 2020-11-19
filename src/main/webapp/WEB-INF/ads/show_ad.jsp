@@ -31,13 +31,17 @@
                 <h5>Description</h5>
                 <p class="card-text"><c:out value="${ad.description}"/></p>
                 <c:if test="${sessionScope.user.username != null}">
-                    <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#editModal">
-                        Edit
-                    </button>
+                    <c:if test="${sessionScope.user.id == ad.userId}">
+                        <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#editModal">
+                            Edit
+                        </button>
+                    </c:if>
+
                 </c:if>
             </div>
             <div class="list-group-item d-flex justify-content-between">
                 <a href="/ads" class="card-link">View All Ads</a>
+
                 <a href="#" class="card-link">Link to users profile</a>
             </div>
 <%--            Edit Pop-up Modal --%>
@@ -46,7 +50,7 @@
                     <div class="modal-content" >
                         <form action="/ad-update" method="POST">
                             <div class="modal-header">
-                               <input id="id" name="addId" type="text" value="<c:out value='${ad.id}'/>">
+                               <input id="id" name="addId" type="hidden" value="<c:out value='${ad.id}'/>">
                                <input id="title" name="title" class="modal-title" value="<c:out value='${ad.title}'/>">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -64,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     
