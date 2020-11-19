@@ -10,7 +10,7 @@ This is a Craigslist / Offerup Clone using Java EE and MVC pattern to implement 
 5. [Contribution](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#contribution)
 
 ### Setup Instruction
-Clone repo, open with Intellij, run the *migration.sql* to set up the database, run main method in *Seeds.java* to load data, then start Tomcat server to view application.
+Clone repo, open with Intellij, run ***migration.sql*** to set up the database, run main method in ***Seeds.java*** to load data, then start Tomcat server to view application.
 
 Make sure to set up Tomcat and MySQL correctly. 
 
