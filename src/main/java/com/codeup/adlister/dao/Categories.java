@@ -15,7 +15,7 @@ public interface Categories {
     // insert data to ad_categories table
     void insertToAdCategoryJoinTable(Long adId, Long categoryId);
 
-    // get categories of a paticular ad
+    // get categories of a particular ad
     List<Category> getCategoriesOfAd(Ad ad);
 
     // insert a new category and return the new category's id
