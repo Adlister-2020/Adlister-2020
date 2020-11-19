@@ -11,15 +11,15 @@
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">
-                <label for="title">Title</label>
-                <input id="title" name="title" class="form-control" type="text">
+                <label for="title">Title(required)</label>
+                <input id="title" name="title" class="form-control" type="text" required>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
             <div class="form-group">
-                <label>Category</label><br>
+                <label>Category(required)</label><br>
                 <c:forEach var="category" items="${categories}">
                     <input type="checkbox" id="${category.getTitle()}" name="category" value="${category.getTitle()}">
                     <label for="${category.getTitle()}">${category.getCaplizedFirstLetterTitle()}</label><br>

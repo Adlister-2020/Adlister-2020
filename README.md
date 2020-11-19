@@ -108,15 +108,17 @@ This is a Craigslist / Offerup Clone using Java EE, MVC pattern to implement CRU
   
   14. [x] Sticky Forms
   
-  15. [x] Allow an Ad to have many categories
+  15. [x] Validate data before saving to database
   
-  16. [ ] Allow an Ad to have an image
+  16. [x] Allow an Ad to have many categories
   
-  17. [ ] Intended Redirects
+  17. [ ] Allow an Ad to have an image
   
-  18. [ ] Mobile responsiveness
+  18. [ ] Intended Redirects
   
-  19. [ ] Allow users to delete account
+  19. [ ] Mobile responsiveness
+  
+  20. [ ] Allow users to delete account
 </details>
 
 <details>
