@@ -24,7 +24,7 @@ public class Seeds {
             }
 
         }
-
+        
 //      ********** CATEGORIES *********
         DaoFactory.getCategoriesDao().seedCategoriesDb();
 
@@ -52,4 +52,8 @@ public class Seeds {
             DaoFactory.getCategoriesDao().insertToAdCategoryJoinTable((long)i, (long) catId);
         }
     }
+
+//    ********** Images CATEGORIES *********
+
+
 }

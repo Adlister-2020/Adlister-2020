@@ -1,9 +1,12 @@
 package com.codeup.adlister.models;
 
+import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.util.Password;
+import com.github.javafaker.Faker;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Random;
 
 public class User implements Serializable {
     private long id;
@@ -20,7 +23,9 @@ public class User implements Serializable {
         this.username = username;
         this.email = email;
         setPassword(password);
+        randomAvatar();
     }
+
 //    get user from db
     public User(long id, String username, String email, String password,String avatar,String role, java.sql.Date creation) {
         this.id = id;
@@ -70,6 +75,14 @@ public class User implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public void randomAvatar() {
+        Random rand = new Random();
+        int num = rand.nextInt(((90 - 1) + 1)) + 1;
+        int toss = rand.nextInt(((2 - 1) + 1)) + 1;
+        String baseUrl = "https://randomuser.me/api/portraits/";
+        this.avatar = toss >1 ? baseUrl+"men/"+ num +".jpg": baseUrl+"women/"+ num +".jpg";
     }
 
     public String getRole() {

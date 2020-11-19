@@ -1,6 +1,6 @@
 USE adlister_db;
 SET FOREIGN_KEY_CHECKS=0;
--- DROP TABLE IF EXISTS ads;
+DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS ad_categories;
@@ -46,4 +46,18 @@ CREATE TABLE ad_categories (
     FOREIGN KEY (category_id) REFERENCES categories(id),
     FOREIGN KEY (ad_id) REFERENCES ads(id)
 );
+
+CREATE TABLE images (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    url TEXT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ad_categories (
+    ad_id INT UNSIGNED NOT NULL,
+    image_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (image_id) REFERENCES images(id),
+    FOREIGN KEY (ad_id) REFERENCES ads(id)
+);
+
 SET FOREIGN_KEY_CHECKS=1;

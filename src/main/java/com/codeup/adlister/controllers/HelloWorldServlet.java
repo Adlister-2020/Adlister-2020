@@ -10,6 +10,7 @@ import java.io.IOException;
 @WebServlet(name = "controllers.HelloWorldServlet", urlPatterns = "/")
 public class HelloWorldServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
+        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+
     }
 }

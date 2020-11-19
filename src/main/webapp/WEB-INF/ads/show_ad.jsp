@@ -24,7 +24,8 @@
                 <h4 class="card-title"><c:out value="${ad.title}"/></h4>
             </div>
             <div class="list-group-item">
-                Show Users Info here needed from need to get user by id on user ad dao (Price or username)
+                <img src="<c:out value="${ad.getAuthor().getAvatar()}"/>" class="rounded-circle" width="80px;" height="80px">
+                <a href="<c:out value="/profile?author=${ad.getAuthor().getId()}"/>" class="card-text"><c:out value="${ad.getAuthor().getUsername()}"/></a>
             </div>
             <div class="list-group-item">
                 <h5>Description</h5>
