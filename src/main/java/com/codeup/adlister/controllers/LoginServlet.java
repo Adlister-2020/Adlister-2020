@@ -19,7 +19,6 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
-
         request.getSession().removeAttribute("username");
         request.getSession().removeAttribute("password");
         request.getSession().removeAttribute("confirm_password");
@@ -30,7 +29,6 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password2 = request.getParameter("password2");
         User user = DaoFactory.getUsersDao().findByUsername(username);
-
 
 
         if (user == null){
@@ -65,3 +63,10 @@ public class LoginServlet extends HttpServlet {
         }
     }
 }
+
+//  ****** ad to code after tc has pushed *******
+//        request.getSession().setAttribute("user", user);
+//        if(request.getSession().getAttribute("callbackUrl")!=null){
+//        response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
+//        }
+//        response.sendRedirect("/profile");
