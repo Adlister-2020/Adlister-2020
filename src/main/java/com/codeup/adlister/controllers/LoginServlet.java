@@ -19,45 +19,48 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
+
+        request.getSession().removeAttribute("username");
+        request.getSession().removeAttribute("password");
+        request.getSession().removeAttribute("confirm_password");
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String password2 = request.getParameter("password2");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
 
-//        test if any error exists
-        boolean nullUser = (user == null);
 
-        boolean hasErrors = nullUser ||
-                username.isEmpty() ||
-                !username.equals(user.getUsername());
-
-
-        if (user == null) {
+        if (user == null){
             response.sendRedirect("/login");
             return;
         }
 
-        boolean validAttempt = Password.check(password, user.getPassword());
+        boolean hasErrors =
+                username.isEmpty() ||
+                DaoFactory.getUsersDao().findByUsername(username) == null ||
+                !Password.check(password2, user.getPassword());
 
         //tests for specific errors
         if(username.isEmpty()){
             request.getSession().setAttribute("userError", "username is blank");
         }
 
-        if(!username.equals(user.getUsername())){
+        if(DaoFactory.getUsersDao().findByUsername(username) == null){
             request.getSession().setAttribute("matchError", "username is false");
         }
 
+        if(!Password.check(password2, user.getPassword()) || password2 == null){
+            request.getSession().setAttribute("passError", "password is does not match");
+        }
 
-        if (validAttempt && !hasErrors) {
+
+        if (!hasErrors) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         } else {
-            request.getSession().setAttribute("passError", "password is blank");
             response.sendRedirect("/login");
         }
     }
