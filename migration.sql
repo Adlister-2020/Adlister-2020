@@ -11,6 +11,10 @@ CREATE TABLE users (
     username VARCHAR(240) NOT NULL UNIQUE,
     email VARCHAR(240) NOT NULL ,
     password VARCHAR(255) NOT NULL,
+    avatar TEXT,
+    role ENUM('member','admin','developer')NOT NULL DEFAULT 'member',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 
 );
@@ -21,6 +25,8 @@ CREATE TABLE ads (
     user_id     INT UNSIGNED NOT NULL,
     title       VARCHAR(240) NOT NULL,
     description TEXT         NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
         ON DELETE CASCADE
