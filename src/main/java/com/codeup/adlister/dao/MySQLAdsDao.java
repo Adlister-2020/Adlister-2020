@@ -142,7 +142,17 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public void destroyAd(Ad ad) {
+    public void destroyAd(int id) {
+        String query = "DELETE from ads WHERE id = ?";
+        try
+        {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting ad", e);
+        }
     }
   
     public List<Ad> getAdsBySearch(String search) {

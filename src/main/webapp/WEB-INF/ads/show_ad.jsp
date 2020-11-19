@@ -41,6 +41,11 @@
             </div>
             <div class="list-group-item d-flex justify-content-between">
                 <a href="/ads" class="card-link">View All Ads</a>
+                <c:if test="${sessionScope.user.id == ad.userId}">
+                    <a href="#"><button type="button" id="deleteBtn" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
+                        Delete
+                    </button></a>
+                </c:if>
 
                 <a href="#" class="card-link">Link to users profile</a>
             </div>
@@ -63,6 +68,29 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="Submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<%--            Delete Pop-up Modal  --%>
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="/ad-delete" method="post">
+                            <div class="modal-header">
+                                <input id="deleteId" name="delete" type="hidden" value="<c:out value='${ad.id}'/>">
+                                <h5 class="modal-title" id="staticBackdropLabel">Attention</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you would like to delete this ad?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </div>
                         </form>
                     </div>
