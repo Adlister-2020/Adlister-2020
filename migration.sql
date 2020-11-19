@@ -49,7 +49,7 @@ CREATE TABLE ad_categories (
 
 CREATE TABLE images (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    url TEXT,
+    url TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 
