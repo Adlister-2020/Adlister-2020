@@ -29,9 +29,11 @@
             <div class="list-group-item">
                 <h5>Description</h5>
                 <p class="card-text"><c:out value="${ad.description}"/></p>
-                <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#editModal">
-                    Edit
-                </button>
+                <c:if test="${sessionScope.user.username != null}">
+                    <button type="button" class="btn btn-primary card-link" data-toggle="modal" data-target="#editModal">
+                        Edit
+                    </button>
+                </c:if>
             </div>
             <div class="list-group-item d-flex justify-content-between">
                 <a href="/ads" class="card-link">View All Ads</a>
@@ -40,21 +42,23 @@
 <%--            Edit Pop-up Modal --%>
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><c:out value="${ad.title}"/></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-<%--                            Ad Description for editing in modal--%>
-                            <c:out value="${ad.description}"/>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                    <div class="modal-content" >
+                        <form action="/ad-update" method="POST">
+                            <div class="modal-header">
+                               <input id="title exampleModalLabel" name="title" class="modal-title" value="<c:out value='${ad.title}'/>">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+    <%--                            Ad Description for editing in modal--%>
+                                <input id="description" name="description" class="modal-title" value="<c:out value='${ad.title}'/>">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="Submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

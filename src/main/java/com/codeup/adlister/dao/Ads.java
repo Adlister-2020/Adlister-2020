@@ -22,8 +22,9 @@ public interface Ads {
     Ad getAdById(Long adId);
 
 
-    Ad update (Ad ad);
-    Ad destroy (Ad ad);
+    void updateAd(Ad ad);
+
+    void destroyAd(Ad ad);
 
     List<Ad> getAdsBySearch(String search);
 
