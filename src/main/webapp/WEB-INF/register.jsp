@@ -37,7 +37,7 @@
         <c:otherwise>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text" placeholder="email@example.com">
+                <input id="email" name="email" class="form-control" type="email" placeholder="email@example.com">
             </div>
         </c:otherwise>
     </c:choose>

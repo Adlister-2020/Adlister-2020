@@ -47,7 +47,7 @@ public class MySQLCategoriesDao implements Categories {
     public Category getCategoryByTitle(String cat) {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM categories WHERE title LIKE ? LIMIT 1;");
+            stmt = connection.prepareStatement("SELECT * FROM categories WHERE title LIKE ? LIMIT 1;"); // possible bug here
             stmt.setString(1, "%" + cat +"%");
             ResultSet rs = stmt.executeQuery();
             Category category = new Category();

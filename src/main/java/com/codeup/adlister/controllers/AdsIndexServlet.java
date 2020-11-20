@@ -20,7 +20,7 @@ public class AdsIndexServlet extends HttpServlet {
         }
 
         String cat = request.getParameter("category");
-        System.out.println(cat);
+        System.out.println(cat); // need to delete after debugging
         request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         if (cat != null && !cat.equals("")) {
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
