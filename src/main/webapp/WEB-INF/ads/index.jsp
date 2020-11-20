@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -9,71 +10,63 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="container">
-
-    <h1>Here Are all the ads!</h1>
-    <c:if test="${category != null}">
-        <h3>In the category of ${category.getTitle()}</h3>
-    </c:if>
-
+<div class="w-100 my-5">
     <div class="row d-flex justify-content-center">
-<%--        <h1 class="text-center my-3">Here Are all the ads!</h1>--%>
+
         <c:forEach var="ad" items="${ads}">
-            <div class=" col-12 my-3">
-                <div class="card shadow d-flex justify-content-center" style="width: 18rem;">
-                        <%--        <img class="card-img-top" src="..." alt="Card image cap">--%>
-                    <div id="carousel<c:out value="${ad.id}"/>" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <c:forEach items="${ad.getImages()}" var="img" varStatus="loop">
-                                <c:choose>
-                                    <c:when test="${loop.index == 0}">
-                                        <div class="carousel-item active">
-                                            <img src="${img.url}" class="d-block w-100" alt="...">
-                                        </div>
-                                    </c:when>
-                                    <c:when test="${loop.index > 0}">
-                                        <div class="carousel-item">
-                                            <img src="${img.url}" class="d-block w-100" alt="...">
-                                        </div>
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                        </div>
-                        <a class="carousel-control-prev" href="#carousel<c:out value="${ad.id}"/>" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel<c:out value="${ad.id}"/>" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
+            <div id="${ad.id}" class="card menu-view shadow-lg grow">
+                <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>
+                    <c:if test="${fn:length(ad.getImages()) == 0}">
+                        <img src="https://via.placeholder.com/800x600.png?text=Create+Your+Own+Ad" class="card-img-top" alt="..." style="height:24rem">
+                    </c:if>
+                    <c:forEach items="${ad.getImages()}" var="img" varStatus="loop">
+                        <c:choose>
+                            <c:when test="${loop.index == 0}">
+                                <img src="${img.url}" class="card-img-top" alt="..." style="height:24rem">
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+                </a>
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item card-adtitle">
+                        <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>
+                            <h5 class="card-title"><c:out value="${ad.title}"/></h5>
                         </a>
                     </div>
-                    <div class="list-group list-group-flush">
-                        <div class="list-group-item">
-                            <h4 class="card-title"><c:out value="${ad.title}"/></h4>
-                        </div>
-                        <div class="list-group-item">
-                            <h5>Description</h5>
-                            <p class="card-text"><c:out value="${ad.description}"/></p>
-                            <c:if test="${categoriesDao.getCategoriesOfAd(ad) != null}">
-                                <div><strong>Categories: </strong>
+                    <div class="list-group-item card-descriptions">
+                        <h6>Description</h6>
+                        <p class="card-text">
+                            <c:out value="${fn:length(ad.description) <=136  ? ad.description : fn:substring(ad.description,0, 136)}"/>
+                        </p>
+                    </div>
+                    <div class="list-group-item card-price">
+                        <p class="card-text font-weight-bold float-left">
+                            $<c:out value="${ad.price}"/>
+
+                        </p>
+                        <p class="card-text text-muted float-right">
+                            <i class="fas fa-map-marker-alt"></i> <c:out value="${ad.location}"/>
+                        </p>
+                    </div>
+                    <div class="list-group-item card-categories">
+                        <c:if test="${categoriesDao.getCategoriesOfAd(ad) != null}">
+                            <div>
+                                <ul class="list-inline">
                                     <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
-                                        <span class="bg-secondary p-2 m-2 rounded-pill">
-                                            <a class="text-white" href="<c:url value='/ads?category=${cat.getTitle()}'/>">
+                                    <li class="list-inline-item">
+                                        <span class="badge border border-info badge-pill ">
+                                            <a href="<c:url value='/ads?category=${cat.getTitle()}'/>">
                                                 <c:out value="${cat.getCaplizedFirstLetterTitle()}" />
                                             </a>
                                         </span>
+                                    </li>
                                     </c:forEach>
-                                </div>
-                            </c:if>
-                        </div>
-                        <div class="list-group-item d-flex justify-content-between">
-                            <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>View Ad</a>
-                        </div>
+                                </ul>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
-
         </c:forEach>
     </div>
     <div>

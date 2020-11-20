@@ -11,5 +11,11 @@
     <div class="container">
         <h1>Welcome to the Adlister!</h1>
     </div>
+    <jsp:include page="WEB-INF/partials/footer.jsp"/>
+    <script>
+        setTimeout(function(){
+            window.location.href = "/ads";
+        }, 100);
+    </script>
 </body>
 </html>

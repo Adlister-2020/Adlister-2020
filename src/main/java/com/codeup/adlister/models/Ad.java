@@ -1,9 +1,7 @@
 package com.codeup.adlister.models;
-
-
 import java.io.Serializable;
-;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -15,17 +13,23 @@ public class Ad implements Serializable {
     private long userId;
     private String title;
     private String description;
+    private double price;
+    private boolean sold;
+    private String location;
     private String creation;
     private java.sql.Timestamp timeStamp;
 
     public Ad() {}
 
     // get ad from db
-    public Ad(long id, long userId, String title, String description,java.sql.Timestamp created_at) {
+    public Ad(long id, long userId, String title, String description,double price, boolean sold, String location, java.sql.Timestamp created_at) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        setPrice(price);
+        this.sold = sold;
+        this.location = location;
         this.timeStamp = created_at;
         setCreation();
     }
@@ -34,6 +38,15 @@ public class Ad implements Serializable {
         this.userId = userId;
         this.title = title;
         this.description = description;
+    }
+    // ideal ad creation
+    public Ad(long userId, String title, String description,double price, boolean sold, String location) {
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        setPrice(price);
+        this.sold = sold;
+        this.location = location;
     }
 
     public long getId() {
@@ -85,5 +98,29 @@ public class Ad implements Serializable {
     }
     public List<Image> getImages(){
        return DaoFactory.getImagesDao().imagesByAdId(this.getId());
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = Math.round(price*100)/100.0d;;
+    }
+
+    public boolean isSold() {
+        return sold;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
