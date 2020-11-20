@@ -33,8 +33,8 @@ public class AdsIndexServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
         }
 
-//        request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         if (cat != null && !cat.equals("") && !cat.equals("All")) {
+
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
             request.setAttribute("category", category);
             request.setAttribute("ads", DaoFactory.getAdsDao().allAdsByCategory(category));

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,11 +17,13 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <body>
-<div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-center my-3">
     <div class="card d-flex justify-content-center" style="width: 80%;">
-<%--        <img class="card-img-top" src="..." alt="Card image cap">--%>
         <div id="carousel<c:out value="${ad.id}"/>" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
+                <c:if test="${fn:length(ad.getImages()) == 0}">
+                    <img src="https://via.placeholder.com/800x600.png?text=Create+Your+Own+Ad" class="card-img-top" alt="..." style="height:24rem">
+                </c:if>
                 <c:forEach items="${ad.getImages()}" var="img" varStatus="loop">
                     <c:choose>
                         <c:when test="${loop.index == 0}">
@@ -73,9 +76,6 @@
                         Delete
                     </button></a>
                 </c:if>
-
-                <a href="#" class="card-link">Link to users profile</a>
-
                 <p>Created: <c:out value="${ad.creation}"/> </p>
 
             </div>
@@ -86,14 +86,14 @@
                         <form action="/ad-update" method="POST">
                             <div class="modal-header">
                                <input id="id" name="addId" type="hidden" value="<c:out value='${ad.id}'/>">
-                               <input id="title" name="title" class="modal-title" value="<c:out value='${ad.title}'/>">
+                               <input id="title" name="title" class="modal-title form-control" value="<c:out value='${ad.title}'/>">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
     <%--                            Ad Description for editing in modal--%>
-                                <input id="description" name="description" class="modal-title" value="<c:out value='${ad.description}'/>">
+                                <input id="description" name="description" class="modal-title form-control" value="<c:out value='${ad.description}'/>">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
