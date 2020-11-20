@@ -30,8 +30,9 @@
         <form action="/register" method="get">
             <input type="submit" class="btn btn-secondary btn-block" value="Register.">
         </form>
+        <p>If you have forgotten your password, please contact us as 1+(800)-867-5309 with your secret phrase to reset your password.</p>
     </div>
-<jsp:include page="partials/footer.jsp"/>
+
 
 </body>
 </html>
