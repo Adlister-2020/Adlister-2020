@@ -27,5 +27,5 @@ public interface Ads {
     void destroyAd(int id);
 
     List<Ad> getAdsBySearch(String search);
-
+    List<Ad> getAdsBySearchAndCategory(String search, Category category);
 }

@@ -14,21 +14,31 @@ import java.io.IOException;
 public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search = request.getParameter("search");
+        String cat = request.getParameter("category");
+
+        request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
+
+        if (search != null && !search.equals("") && cat != null && !cat.equals("") && !cat.equals("All")) {
+            Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
+            request.setAttribute("category", category);
+            request.setAttribute("ads", DaoFactory.getAdsDao().getAdsBySearchAndCategory(search, category));
+            request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+
+        }
+
         if (search != null && !search.equals("")) {
             request.setAttribute("ads", DaoFactory.getAdsDao().getAdsBySearch(search));
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
         }
 
-        String cat = request.getParameter("category");
-        request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
-        if (cat != null && !cat.equals("")) {
+        if (cat != null && !cat.equals("") && !cat.equals("All")) {
+
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
             request.setAttribute("category", category);
             request.setAttribute("ads", DaoFactory.getAdsDao().allAdsByCategory(category));
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
             return;
         }
-
         request.setAttribute("ads", DaoFactory.getAdsDao().all());
         request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
     }
