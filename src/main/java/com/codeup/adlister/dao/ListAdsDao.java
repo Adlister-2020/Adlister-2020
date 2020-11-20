@@ -57,6 +57,7 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
-    public void destroyAd(Ad ad) {
+    public void destroyAd(int id) {
+
     }
 }

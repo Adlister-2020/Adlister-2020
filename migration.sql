@@ -47,6 +47,7 @@ CREATE TABLE ad_categories (
     category_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (category_id) REFERENCES categories(id),
     FOREIGN KEY (ad_id) REFERENCES ads(id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE images (
@@ -58,8 +59,10 @@ CREATE TABLE images (
 CREATE TABLE ad_images (
     ad_id INT UNSIGNED NOT NULL,
     image_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (image_id) REFERENCES images(id),
+    FOREIGN KEY (image_id) REFERENCES images(id)
+        ON DELETE CASCADE,
     FOREIGN KEY (ad_id) REFERENCES ads(id)
+        ON DELETE CASCADE
 );
 
 SET FOREIGN_KEY_CHECKS=1;

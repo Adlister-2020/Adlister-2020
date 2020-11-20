@@ -20,48 +20,61 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        request.getSession().removeAttribute("username");
-        request.getSession().removeAttribute("password");
-        request.getSession().removeAttribute("confirm_password");
+        System.out.println("page has loaded");
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String username = request.getParameter("username");
+        String username2 = request.getParameter("username2");
         String password2 = request.getParameter("password2");
-        User user = DaoFactory.getUsersDao().findByUsername(username);
+
+//
+//
+//        if (user == null){
+//            response.sendRedirect("/login");
+//            return;
+//        }
 
 
+        //testing for errors
+        boolean hasErrors = username2.isEmpty() ||
+                DaoFactory.getUsersDao().findByUsername(username2) == null;
 
-        if (user == null){
-            response.sendRedirect("/login");
-            return;
-        }
-
-        boolean hasErrors =
-                username.isEmpty() ||
-                DaoFactory.getUsersDao().findByUsername(username) == null ||
-                !Password.check(password2, user.getPassword());
 
         //tests for specific errors
-        if(username.isEmpty()){
-            request.getSession().setAttribute("userError", "username is blank");
-        }
-
-        if(DaoFactory.getUsersDao().findByUsername(username) == null){
-            request.getSession().setAttribute("matchError", "username is false");
-        }
-
-        if(!Password.check(password2, user.getPassword()) || password2 == null){
-            request.getSession().setAttribute("passError", "password is does not match");
+        User user = DaoFactory.getUsersDao().findByUsername(username2);
+        if(DaoFactory.getUsersDao().findByUsername(username2) == null){
+            request.setAttribute("loginError", "username is false");
+            System.out.println("username did not match");
         }
 
 
-        if (!hasErrors) {
-            request.getSession().setAttribute("user", user);
-            response.sendRedirect("/profile");
-        } else {
-            response.sendRedirect("/login");
+        if(user != null){
+             hasErrors = !Password.check(password2, user.getPassword());
+            if(!Password.check(password2, user.getPassword())){
+                request.setAttribute("loginError", "password is does not match");
+                System.out.println("password did not match");
+            }
         }
+
+
+//page direction for if errors are found
+        System.out.println(hasErrors);
+        if (hasErrors) {
+            try{
+                System.out.println("There was an error");
+                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
+            }catch (ServletException e){
+                e.printStackTrace();
+            }
+        }
+        request.getSession().setAttribute("user", user);
+
+        if(request.getSession().getAttribute("callbackUrl")!=null){
+            response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
+            return;
+        }
+        response.sendRedirect("/profile");
+
     }
 }

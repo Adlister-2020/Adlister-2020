@@ -13,7 +13,6 @@ import com.codeup.adlister.dao.DaoFactory;
 public class Ad implements Serializable {
     private long id;
     private long userId;
-    private long adId;
     private String title;
     private String description;
     private String creation;

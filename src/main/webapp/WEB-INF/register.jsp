@@ -12,7 +12,7 @@
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post" class="needs-validation" novalidate>
     <c:choose>
-        <c:when test="${sessionScope.usernameError != null}">
+        <c:when test="${requestScope.usernameError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="username"/>
                 <jsp:param name="type" value="text"/>
@@ -27,10 +27,10 @@
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${sessionScope.userError != null}">
+        <c:when test="${requestScope.userError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="email"/>
-                <jsp:param name="type" value="text"/>
+                <jsp:param name="type" value="email"/>
                 <jsp:param name="message" value="Please choose a different email"/>
             </jsp:include>
         </c:when>
@@ -42,7 +42,7 @@
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${sessionScope.passError != null}">
+        <c:when test="${requestScope.passError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="password"/>
                 <jsp:param name="type" value="password"/>
@@ -57,7 +57,7 @@
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${sessionScope.matchError != null}">
+        <c:when test="${requestScope.matchError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="confirm_password"/>
                 <jsp:param name="type" value="password"/>
