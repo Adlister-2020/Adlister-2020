@@ -16,6 +16,7 @@ public class User implements Serializable {
     private String avatar;
     private String role;
     private java.sql.Date creation;
+    private String passRecover;
 
     public User() {}
 //  create temp user 
@@ -25,13 +26,21 @@ public class User implements Serializable {
         setPassword(password);
         randomAvatar();
     }
+    public User(String username, String email, String password, String passRecover) {
+        this.username = username;
+        this.email = email;
+        this.passRecover = passRecover;
+        setPassword(password);
+        randomAvatar();
+    }
 
 //    get user from db
-    public User(long id, String username, String email, String password,String avatar,String role, java.sql.Date creation) {
+    public User(long id, String username, String email, String password,String passRecover,String avatar,String role, java.sql.Date creation) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.passRecover = passRecover;
         this.avatar = avatar;
         this.role = role;
         this.creation = creation;
@@ -71,6 +80,14 @@ public class User implements Serializable {
 
     public String getAvatar() {
         return avatar;
+    }
+
+    public String getPassRecover(){
+        return passRecover;
+    }
+
+    public void setPassRecover(String passRecover){
+        this.passRecover = passRecover;
     }
 
     public void setAvatar(String avatar) {

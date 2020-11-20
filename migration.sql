@@ -13,6 +13,7 @@ CREATE TABLE users (
     username VARCHAR(240) NOT NULL UNIQUE,
     email VARCHAR(240) NOT NULL ,
     password VARCHAR(255) NOT NULL,
+    password_recover VARCHAR(20),
     avatar TEXT,
     role ENUM('member','admin','developer')NOT NULL DEFAULT 'member',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
@@ -27,6 +28,9 @@ CREATE TABLE ads (
     user_id     INT UNSIGNED NOT NULL,
     title       VARCHAR(240) NOT NULL,
     description TEXT         NOT NULL,
+    price       DECIMAL(10,2),
+    sold        BOOL,
+    location    TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
@@ -66,3 +70,5 @@ CREATE TABLE ad_images (
 );
 
 SET FOREIGN_KEY_CHECKS=1;
+
+# m
