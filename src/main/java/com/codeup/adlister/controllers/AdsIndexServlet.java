@@ -20,7 +20,6 @@ public class AdsIndexServlet extends HttpServlet {
         }
 
         String cat = request.getParameter("category");
-        System.out.println(cat);
         request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         if (cat != null && !cat.equals("")) {
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
