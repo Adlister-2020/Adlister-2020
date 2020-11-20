@@ -168,9 +168,12 @@ public class MySQLAdsDao implements Ads {
   
     public List<Ad> getAdsBySearch(String search) {
         PreparedStatement stmt = null;
-        String query = "SELECT * FROM ads WHERE title LIKE '%" + search + "%' || description LIKE '%" + search + "%'";
+        String searchTermWithWildcards = "%" + search + "%";
+        String query = "SELECT * FROM ads WHERE title LIKE ? || description LIKE ?";
         try {
             stmt = connection.prepareStatement(query);
+            stmt.setString(1, searchTermWithWildcards);
+            stmt.setString(2, searchTermWithWildcards);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -180,10 +183,12 @@ public class MySQLAdsDao implements Ads {
 
     public List<Ad> getAdsBySearchAndCategory(String search, Category category) {
         PreparedStatement stmt = null;
-        String query = "SELECT * FROM ads WHERE (title LIKE '%" + search + "%' || description LIKE '%" + search + "%'" +
-                ") AND id IN (SELECT ad_id FROM ad_categories WHERE category_id = " + category.getId() + ");";
+        String searchTermWithWildcards = "%" + search + "%";
+        String query = "SELECT * FROM ads WHERE (title LIKE ? || description LIKE ?) AND id IN (SELECT ad_id FROM ad_categories WHERE category_id = " + category.getId() + ");";
         try {
             stmt = connection.prepareStatement(query);
+            stmt.setString(1, searchTermWithWildcards);
+            stmt.setString(2, searchTermWithWildcards);
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
