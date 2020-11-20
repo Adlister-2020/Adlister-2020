@@ -17,7 +17,7 @@
     </c:if>
 
     <div class="row d-flex justify-content-center">
-        <h1 class="text-center my-3">Here Are all the ads!</h1>
+<%--        <h1 class="text-center my-3">Here Are all the ads!</h1>--%>
         <c:forEach var="ad" items="${ads}">
             <div class=" col-12 my-3">
                 <div class="card shadow d-flex justify-content-center" style="width: 18rem;">

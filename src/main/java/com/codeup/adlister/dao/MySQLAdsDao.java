@@ -159,4 +159,17 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    public List<Ad> getAdsBySearchAndCategory(String search, Category category) {
+        PreparedStatement stmt = null;
+        String query = "SELECT * FROM ads WHERE (title LIKE '%" + search + "%' || description LIKE '%" + search + "%'" +
+                ") AND id IN (SELECT ad_id FROM ad_categories WHERE category_id = " + category.getId() + ");";
+        try {
+            stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ads.", e);
+        }
+    }
+
 }
