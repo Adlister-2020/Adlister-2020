@@ -27,17 +27,17 @@
         </c:otherwise>
     </c:choose>
     <c:choose>
-        <c:when test="${requestScope.userError != null}">
+        <c:when test="${requestScope.emailError != null}">
             <jsp:include page="partials/error.jsp">
                 <jsp:param name="id" value="email"/>
-                <jsp:param name="type" value="email"/>
+                <jsp:param name="type" value="text"/>
                 <jsp:param name="message" value="Please choose a different email"/>
             </jsp:include>
         </c:when>
         <c:otherwise>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="email" placeholder="email@example.com">
+                <input id="email" name="email" class="form-control" type="text" placeholder="email@example.com">
             </div>
         </c:otherwise>
     </c:choose>
