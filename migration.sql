@@ -69,3 +69,5 @@ CREATE TABLE ad_images (
 );
 
 SET FOREIGN_KEY_CHECKS=1;
+
+# m
