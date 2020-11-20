@@ -56,7 +56,7 @@ public class Seeds {
                     faker.backToTheFuture().quote(),
                     Double.parseDouble(faker.commerce().price()),
                     false,
-                    faker.address().cityName()
+                    faker.address().city()
             );
             System.out.print(".");
             DaoFactory.getAdsDao().insert(seedAd);
