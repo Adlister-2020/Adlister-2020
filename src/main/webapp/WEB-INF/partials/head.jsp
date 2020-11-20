@@ -9,3 +9,4 @@
 
 <!-- fontawesome-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Oxygen:300" rel="stylesheet">

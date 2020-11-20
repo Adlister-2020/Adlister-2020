@@ -15,8 +15,6 @@ public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search = request.getParameter("search");
         String cat = request.getParameter("category");
-        System.out.println("search: " + search);
-        System.out.println("cat: " + cat);
 
         request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
 
