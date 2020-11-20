@@ -1,6 +1,7 @@
 package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,11 @@ public class AdminServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String table = request.getParameter("table");
+//        if (table != null && !table.equals("")) {
+//            
+//        }
+
         User currentUser  = (User) request.getSession().getAttribute("user");
         // redirect unregistered and unauthorized users to login
         if (request.getSession().getAttribute("user") == null || currentUser.getRole().equals("member")) {
