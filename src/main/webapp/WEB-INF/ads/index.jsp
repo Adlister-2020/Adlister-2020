@@ -9,36 +9,37 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-
+<section>
 <div class="w-100 my-5">
     <div class="row d-flex justify-content-center">
-
+        <c:if test="${fn:length(ads) == 0}">
+            <h3 class="font-weight-bold"> Try a new search </h3>
+            <p class="text-muted">Change your search filters, check your spelling, or try a less specific search</p>
+        </c:if>
         <c:forEach var="ad" items="${ads}">
-            <div id="${ad.id}" class="card menu-view shadow-lg grow">
-                <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>
-                    <c:if test="${fn:length(ad.getImages()) == 0}">
-                        <img src="https://via.placeholder.com/800x600.png?text=Create+Your+Own+Ad" class="card-img-top" alt="..." style="height:24rem">
-                    </c:if>
-                    <c:forEach items="${ad.getImages()}" var="img" varStatus="loop">
-                        <c:choose>
-                            <c:when test="${loop.index == 0}">
-                                <img src="${img.url}" class="card-img-top" alt="..." style="height:24rem">
-                            </c:when>
-                        </c:choose>
-                    </c:forEach>
+            <div id="${ad.id}" class="card menu-view shadow-lg grow m-3">
+                <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
+                    <c:choose>
+                        <c:when test="${fn:length(ad.getImages()) > 0}">
+                            <img src="${ad.getImages()[0].url}" class="card-img-top" alt="..." >
+                        </c:when>
+                        <c:otherwise>
+                            <img src="https://via.placeholder.com/800x600.png?text=Create+Your+Own+Ad" class="card-img-top" alt="..." style="height:24rem">
+                        </c:otherwise>
+                    </c:choose>
                 </a>
                 <div class="list-group list-group-flush">
                     <div class="list-group-item card-adtitle">
-                        <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>
+                        <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
                             <h5 class="card-title"><c:out value="${ad.title}"/></h5>
                         </a>
                     </div>
-                    <div class="list-group-item card-descriptions">
-                        <h6>Description</h6>
-                        <p class="card-text">
-                            <c:out value="${fn:length(ad.description) <=136  ? ad.description : fn:substring(ad.description,0, 136)}"/>
-                        </p>
-                    </div>
+<%--                    <div class="list-group-item card-descriptions">--%>
+<%--                        <h6>Description</h6>--%>
+<%--                        <p class="card-text">--%>
+<%--                            <c:out value="${fn:length(ad.description) <=136  ? ad.description : fn:substring(ad.description,0, 136)}"/>--%>
+<%--                        </p>--%>
+<%--                    </div>--%>
                     <div class="list-group-item card-price">
                         <p class="card-text font-weight-bold float-left">
                             $<c:out value="${ad.price}"/>
@@ -69,9 +70,8 @@
             </div>
         </c:forEach>
     </div>
-    <div>
-    </div>
 </div>
+</section>
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
 </body>
 </html>

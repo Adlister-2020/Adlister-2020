@@ -6,6 +6,7 @@ import com.codeup.adlister.models.User;
 import com.github.javafaker.Faker;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -79,30 +80,25 @@ public class Seeds {
         System.out.println("SEEDING IMAGES FOR ADS TO DB");
 
         for (int i = 1; i <= DaoFactory.getAdsDao().all().size(); i++) {
-            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg());
-            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg());
-            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg());
+            List<String> titleArr = Arrays.asList(DaoFactory.getAdsDao().getAdById((long) i).getTitle().split(" "));
+            Random rand = new Random();
+            int index = rand.nextInt(((titleArr.size()- 1) + 1)) + 1;
+            String word = (titleArr.get(index-1));
+            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg(word));
+            index = rand.nextInt(((titleArr.size()- 1) + 1)) + 1;
+            word = (titleArr.get(index-1));
+            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg(word));
+            index = rand.nextInt(((titleArr.size()- 1) + 1)) + 1;
+            word = (titleArr.get(index-1));
+            DaoFactory.getImagesDao().insertToAdImages((long)i, randomImg(word));
             System.out.print(".");
         }
         System.out.println();
         System.out.println("DONE... EXITING SEEDS");
     }
 
-    public static long randomImg(){
-        Faker faker = new Faker();
-        List<String> words = new ArrayList<>();
-        words.add(faker.commerce().material());
-        words.add(faker.animal().name());
-        words.add(faker.color().name());
-        words.add(faker.ancient().god());
-        words.add(faker.dragonBall().character());
-        words.add(faker.music().instrument());
-        words.add(faker.rickAndMorty().character());
-        Random rand = new Random();
-        int max = words.size()-1;
-        int num = rand.nextInt(((max - 1) + 1)) + 1;
-        String randomWord = words.get(num);
-        String imageUrl = "https://loremflickr.com/800/600/"+randomWord;
+    public static long randomImg(String word){
+        String imageUrl = "https://loremflickr.com/800/600/"+word;
         Image img = new Image(imageUrl);
         return DaoFactory.getImagesDao().insert(img);
     }
