@@ -22,6 +22,7 @@ public class Seeds {
                 faker.internet().emailAddress(),
                 "123456"
             );
+            seedUser.setPassRecover(faker.elderScrolls().creature());
             if(DaoFactory.getUsersDao().findByUsername(seedUser.getUsername())!=null){
                 System.out.println("****CANNOT CREATE USER****");
             }else{
