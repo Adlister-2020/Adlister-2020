@@ -12,6 +12,7 @@
 
 <div class="w-100 my-5">
     <div class="row d-flex justify-content-center">
+
         <c:forEach var="ad" items="${ads}">
             <div id="${ad.id}" class="card menu-view shadow-lg grow">
                 <a href='/ads/ad?adId=<c:out value="${ad.id}"/>'>
