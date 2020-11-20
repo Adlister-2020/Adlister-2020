@@ -10,7 +10,7 @@ This is a Craigslist / Offerup Clone using Java EE and MVC pattern to implement 
 5. [Contribution](https://github.com/Adlister-2020/Adlister-2020/tree/li-wang#contribution)
 
 ### Setup Instruction
-Clone repo, open with Intellij, run ***migration.sql*** to set up the database, run main method in ***Seeds.java*** to load data, then start Tomcat server to view application.
+Clone repo, open with Intellij, run **migration.sql** to set up the database, run main method in **Seeds.java** to load data, then start Tomcat server to view application.
 
 Make sure to set up Tomcat and MySQL correctly. 
 
@@ -56,7 +56,7 @@ Make sure to set up Tomcat and MySQL correctly.
 <details>
   <summary>Admin</summary>
 
-  1. [ ] As an **admin**, when I ***log in*** I expect to ***view admin dashboard page***.  
+  1. [x] As an **admin**, when I ***log in*** I expect to ***view admin dashboard page***.  
   
   2. [ ] As an **admin**, when I ***visit admin dashboard*** I expect to ***view the ads table and see all the info including total ads***. 
   
@@ -122,7 +122,7 @@ Make sure to set up Tomcat and MySQL correctly.
   
   18. [x] Allow an Ad to have an image
   
-  19. [ ] Intended Redirects
+  19. [x] Intended Redirects
   
   20. [ ] Mobile responsiveness
   
@@ -162,7 +162,7 @@ Make sure to set up Tomcat and MySQL correctly.
   2. Display categories of each ad.
   3. User can search ads by each category.
   4. Add README.md.
-  5. Add About page.
+  5. Guest can visit About page.
 </details>
 
 <details>
