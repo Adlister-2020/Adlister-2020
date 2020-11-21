@@ -6,16 +6,19 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
+    <link href="${pageContext.request.contextPath}/resources/css/ads_index.css"/>
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <section>
-<div class="w-100 my-5">
+<div class="container-fluid my-5">
     <div class="row d-flex justify-content-center">
         <c:if test="${fn:length(ads) == 0}">
-            <h3 class="font-weight-bold"> Try a new search </h3>
-            <p class="text-muted">Change your search filters, check your spelling, or try a less specific search</p>
-        </c:if>
+            <div class="text-center">
+                <h3 class="font-weight-bold"> Try a new search </h3>
+                <h6 class="text-muted">Change your search filters, check your spelling, or try a less specific search</h6>
+            </div>
+             </c:if>
         <c:forEach var="ad" items="${ads}">
             <div id="${ad.id}" class="card menu-view shadow-lg grow m-3">
                 <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
@@ -28,19 +31,14 @@
                         </c:otherwise>
                     </c:choose>
                 </a>
-                <div class="list-group list-group-flush">
-                    <div class="list-group-item card-adtitle">
+                <div class="card-body">
+                <div class="list-group list-group-flush bg-transparent">
+                    <div class="list-group-item bg-transparent card-adtitle">
                         <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
                             <h5 class="card-title"><c:out value="${ad.title}"/></h5>
                         </a>
                     </div>
-<%--                    <div class="list-group-item card-descriptions">--%>
-<%--                        <h6>Description</h6>--%>
-<%--                        <p class="card-text">--%>
-<%--                            <c:out value="${fn:length(ad.description) <=136  ? ad.description : fn:substring(ad.description,0, 136)}"/>--%>
-<%--                        </p>--%>
-<%--                    </div>--%>
-                    <div class="list-group-item card-price">
+                    <div class="list-group-item bg-transparent card-price">
                         <p class="card-text font-weight-bold float-left">
                             $<c:out value="${ad.price}"/>
 
@@ -49,13 +47,13 @@
                             <i class="fas fa-map-marker-alt"></i> <c:out value="${ad.location}"/>
                         </p>
                     </div>
-                    <div class="list-group-item card-categories">
+                    <div class="list-group-item bg-transparent card-categories">
                         <c:if test="${categoriesDao.getCategoriesOfAd(ad) != null}">
                             <div>
                                 <ul class="list-inline">
                                     <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
                                     <li class="list-inline-item">
-                                        <span class="badge border border-info badge-pill ">
+                                        <span class="badge border badge-pill badge-<c:out value="${cat.getTitle()}"/> ">
                                             <a href="<c:url value='/ads?category=${cat.getTitle()}'/>">
                                                 <c:out value="${cat.getCaplizedFirstLetterTitle()}" />
                                             </a>
@@ -66,6 +64,7 @@
                             </div>
                         </c:if>
                     </div>
+                </div>
                 </div>
             </div>
         </c:forEach>

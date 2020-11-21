@@ -13,6 +13,7 @@ CREATE TABLE users (
     username VARCHAR(240) NOT NULL UNIQUE,
     email VARCHAR(240) NOT NULL ,
     password VARCHAR(255) NOT NULL,
+    password_recover TEXT,
     avatar TEXT,
     role ENUM('member','admin','developer')NOT NULL DEFAULT 'member',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
@@ -70,4 +71,4 @@ CREATE TABLE ad_images (
 
 SET FOREIGN_KEY_CHECKS=1;
 
-# m
+#
