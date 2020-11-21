@@ -15,32 +15,33 @@ public class AdsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search = request.getParameter("search");
         String cat = request.getParameter("category");
-
+        request.getSession().setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         request.setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
 
-        if (search != null && !search.equals("") && cat != null && !cat.equals("") && !cat.equals("All")) {
-            Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
-            request.setAttribute("category", category);
-            request.setAttribute("ads", DaoFactory.getAdsDao().getAdsBySearchAndCategory(search, category));
+        boolean hasCategory = cat != null && !cat.equals("");
+        boolean hasSearchTerm = search != null && !search.equals("");
+
+        if(!hasCategory && !hasSearchTerm) {
+            request.setAttribute("ads", DaoFactory.getAdsDao().all());
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
-
         }
-
-        if (search != null && !search.equals("")) {
+        if (hasSearchTerm) {
             request.setAttribute("ads", DaoFactory.getAdsDao().getAdsBySearch(search));
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
         }
-
-        if (cat != null && !cat.equals("") && !cat.equals("All")) {
-
+        if (hasCategory) {
             Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
             request.setAttribute("category", category);
             request.setAttribute("ads", DaoFactory.getAdsDao().allAdsByCategory(category));
             request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
-            return;
         }
-        request.setAttribute("ads", DaoFactory.getAdsDao().all());
-        request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+        if (hasSearchTerm && hasCategory) {
+            Category category = DaoFactory.getCategoriesDao().getCategoryByTitle(cat);
+            request.setAttribute("category", category);
+            request.setAttribute("ads", DaoFactory.getAdsDao().getAdsBySearchAndCategory(search, category));
+            request.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(request, response);
+        }
+
     }
 
 }

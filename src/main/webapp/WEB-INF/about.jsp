@@ -22,5 +22,6 @@
         Nick and Arean founded OfferUp, a marketplace on a mission to become the simplest,
         most trustworthy local buying and selling experience. Our Team</p>
 </div>
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
 </body>
 </html>

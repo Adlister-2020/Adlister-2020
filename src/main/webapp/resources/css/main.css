@@ -1,5 +1,5 @@
 body{
-    background-color: #f9f7f7;
+    background-color: #f5f5f5;
 }
 .navbar{
     background-color: #1F456E!important;
@@ -17,6 +17,11 @@ a, a:hover {
     z-index: 1000;
     cursor: pointer;
 }
+
+.card{
+  border-radius: 30px!important;
+}
+
 .card-adtitle{
     height: 4rem;
 }
@@ -27,12 +32,52 @@ a, a:hover {
     height: 3rem;
 }
 .card-img-top{
+    border-radius: 30px 30px 0 0!important;
     height: 20rem!important;
 }
+
+.badge-primary{
+    background-color: #1F456E!important;
+    color: #f5f5f5!important;
+}
+
+.badge-Furniture {
+    border-color: #3fc1c9!important;
+
+}
+.badge-Clothing{
+    border-color: #1F456E!important;
+
+}
+.badge-Electronics{
+    border-color: #fc5185!important;
+
+}
+.badge-Jewelry{
+    border-color: #f5f5f5!important;
+}
+.badge-Appliances{
+    border-color: #1F456E!important;
+
+}
+.badge-Tools{
+    border-color:  #3fc1c9!important;
+
+}
+.badge-Free {
+    border-color: #1F456E!important;
+
+}
+.badge-Pets {
+    border-color: #fc5185!important;
+
+}
+
 @media only screen and (min-width: 613px){
     .menu-view{
         max-width: 18rem!important;
     }
+
 }
 
 h1,h2,h3,h4{
@@ -44,4 +89,31 @@ h5,h5,p{
 p{
     font-size: 16px;
 }
+
+
+/*search bar*/
+#searchBarPre {
+    border-top-left-radius: 32px !important;
+    border-bottom-left-radius: 32px !important;
+    background-color: #fff
+}
+#searchField{
+    border-left: hidden!important;
+}
+#search {
+    border-top-right-radius: 32px !important;
+    border-bottom-right-radius: 32px !important;
+    background-color: #fff
+}
+
+#searchSelect{
+    max-width: 90%;
+    overflow: scroll;
+    white-space: nowrap;
+}
+#searchSelect::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+
 
