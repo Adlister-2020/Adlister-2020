@@ -18,6 +18,11 @@ a, a:hover {
     cursor: pointer;
 }
 
+.btn-primary {
+    color: #f5f5f5!important;
+    background-color: #1F456E!important;
+    border-color: #1F456E!important;
+}
 .card{
   border-radius: 30px!important;
 }
@@ -114,6 +119,26 @@ p{
 #searchSelect::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }
+
+/******* Modal -or- seperator **********/
+.btn-login {
+    color: #fff;
+    background-color: #34b6ce;
+    border-color: #13b2d0;
+}
+.or-seperator {
+    margin: 20px 0 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+.or-seperator i {
+    padding: 0 10px;
+    background: #ffffff;
+    position: relative;
+    top: -11px;
+    z-index: 1;
+}
+/******* !Modal or seperator **********/
 
 
 

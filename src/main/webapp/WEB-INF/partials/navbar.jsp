@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav id="mainNav" class="navbar navbar-expand-lg shadow-md mb-3 w-100">
-    <div class="container-fluid d-flex align-items-center justify-content-around">
+    <div class="container d-flex align-items-center justify-content-around">
         <a class="navbar-brand" href="/ads">Adlister</a>
         <div id="mobile-search"></div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -11,12 +11,12 @@
             <ul class="navbar-nav text-uppercase ml-auto">
                 <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
                 <c:if test="${sessionScope.user.username == null}">
-                    <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Log in</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Register</a></li>
                 </c:if>
 
                 <c:if test="${sessionScope.user.username != null}">
-                    <li class="nav-item"><a class="nav-link" href="/ads/create">Create an Ad</a></li>
+                    <li class="nav-item mr-2"><a class="nav-link" href="/ads/create">Sell</a></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         <span class="nav-label">
