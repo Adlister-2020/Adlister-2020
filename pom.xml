@@ -56,6 +56,12 @@
             <artifactId>google-api-services-gmail</artifactId>
             <version>v1-rev110-1.25.0</version>
         </dependency>
+        <!--        jsonify java objects-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.0.pr2</version>
+        </dependency>
 
     </dependencies>
 

@@ -7,8 +7,9 @@
     </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
     <div class="container">
-        <h1>Create a new Ad</h1>
+        <h1 class="text-center">Create a new Ad</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">
                 <label for="title">Title(required)</label>
