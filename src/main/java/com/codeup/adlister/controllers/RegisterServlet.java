@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String passRecover = request.getParameter("passRecover");
+//        String passRecover = request.getParameter("passRecover");
         String passwordConfirmation = request.getParameter("confirm_password");
 
         //sets the values that I want to take place in each part of the email
@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // create and save a new user
-        User user = new User(username, email, password, passRecover);
+        User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);
         User dbUser = DaoFactory.getUsersDao().findByUsername(user.getUsername());
         request.getSession().setAttribute("user", dbUser);

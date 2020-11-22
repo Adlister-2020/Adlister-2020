@@ -71,13 +71,16 @@ public class LoginServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        request.getSession().setAttribute("user", user);
 
-        if(request.getSession().getAttribute("callbackUrl")!=null){
-            response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
-            return;
+        if(!hasErrors){
+            request.getSession().setAttribute("user", user);
+            if(request.getSession().getAttribute("callbackUrl")!=null){
+                response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
+                return;
+            }
+            response.sendRedirect("/profile");
         }
-        response.sendRedirect("/profile");
+
 
     }
 }
