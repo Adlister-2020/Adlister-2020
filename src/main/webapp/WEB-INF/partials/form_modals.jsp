@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: rdelarosa
@@ -7,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!---------------- Sign in Modal ---------------------->
+<c:if test="${requestScope['javax.servlet.forward.request_uri'] != '/login'}">
 <div class="modal fade" id="signInModal" tabindex="0">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 1.25rem;">
@@ -24,6 +26,7 @@
         </div>
     </div>
 </div>
+</c:if>
 
 <!---------------- !Sign in Modal ---------------------->
 

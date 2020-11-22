@@ -15,17 +15,17 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="container">
-    <h1>So you've forgotten your password</h1>
+    <h2 class="text-center">So you've forgotten your password</h2>
     <form action="/user/recovery" method="POST">
-        <div class="form-check">
+        <div class="form-group">
+            <label for="recoveryName">Enter Username</label>
+            <input id="recoveryName" name="recovery-user" class="form-control" type="text">
+        </div>
+        <div class="form-check text-center my-3">
             <input class="form-check-input" type="radio" name="reset-password" id="resetPassword" value="1">
             <label class="form-check-label" for="resetPassword">
                 Please send password reset link
             </label>
-        </div>
-        <div class="form-group">
-            <label for="recoveryName">Enter Username</label>
-            <input id="recoveryName" name="recovery-user" class="form-control" type="text">
         </div>
         <input type="submit" class="btn btn-primary btn-block">
     </form>

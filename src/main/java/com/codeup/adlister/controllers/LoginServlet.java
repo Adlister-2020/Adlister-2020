@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 
 
         if(user != null){
-             hasErrors = !Password.check(password2, user.getPassword());
+            hasErrors = !Password.check(password2, user.getPassword());
             if(!Password.check(password2, user.getPassword())){
                 request.setAttribute("loginError", "password is does not match");
                 System.out.println("password did not match");

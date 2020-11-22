@@ -19,7 +19,7 @@
         <c:otherwise>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text">
+                <input id="username" name="username" class="form-control" type="text" required>
             </div>
         </c:otherwise>
     </c:choose>
@@ -34,7 +34,7 @@
         <c:otherwise>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text" placeholder="email@example.com">
+                <input id="email" name="email" class="form-control" type="text" placeholder="email@example.com" required>
             </div>
         </c:otherwise>
     </c:choose>
@@ -49,7 +49,7 @@
         <c:otherwise>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" name="password" class="form-control" type="password">
+                <input id="password" name="password" class="form-control" type="password" required>
             </div>
         </c:otherwise>
     </c:choose>
@@ -64,7 +64,7 @@
         <c:otherwise>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
-                <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                <input id="confirm_password" name="confirm_password" class="form-control" type="password" required>
             </div>
         </c:otherwise>
     </c:choose>
