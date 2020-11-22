@@ -11,8 +11,11 @@ This is a Craigslist / Offerup Clone using Java EE and MVC pattern to implement 
 
 ### Setup Instruction
 Clone repo, open with Intellij, run **migration.sql** to set up the database, run main method in **Seeds.java** to load data.
-Create Config.java in a package directory. Sample setup:
+Create Config.java in a package directory.
+Sample setup:
+
 <img width="640" alt="Screen Shot 2020-11-22 at 4 29 10 PM" src="https://user-images.githubusercontent.com/40813295/99918950-fa15e480-2cdf-11eb-8f3e-ea3f608b2f36.png">
+
 Then start Tomcat server to view application.
 
 Make sure to set up Tomcat and MySQL correctly. 
