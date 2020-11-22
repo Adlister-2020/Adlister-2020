@@ -16,13 +16,14 @@ import java.io.IOException;
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
             return;
         }
 
         System.out.println("page has loaded");
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/sessions/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -65,7 +66,7 @@ public class LoginServlet extends HttpServlet {
         if (hasErrors) {
             try{
                 System.out.println("There was an error");
-                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/sessions/login.jsp").forward(request,response);
             }catch (ServletException e){
                 e.printStackTrace();
             }

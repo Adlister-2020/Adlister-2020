@@ -10,7 +10,7 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
         <h1>Please Log In</h1>
-        <jsp:include page="partials/login_form.jsp"/>
+        <jsp:include page="login_form.jsp"/>
         <p>If you have forgotten your password, please contact us as 1+(800)-867-5309 with your secret phrase to reset your password.</p>
     </div>
 

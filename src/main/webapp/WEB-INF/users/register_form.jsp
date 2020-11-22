@@ -10,7 +10,7 @@
 <form action="/register" method="post" class="needs-validation" novalidate>
     <c:choose>
         <c:when test="${requestScope.usernameError != null}">
-            <jsp:include page="error.jsp">
+            <jsp:include page="../partials/error.jsp">
                 <jsp:param name="id" value="username"/>
                 <jsp:param name="type" value="text"/>
                 <jsp:param name="message" value="Please choose a different username"/>
@@ -25,7 +25,7 @@
     </c:choose>
     <c:choose>
         <c:when test="${requestScope.emailError != null}">
-            <jsp:include page="error.jsp">
+            <jsp:include page="../partials/error.jsp">
                 <jsp:param name="id" value="email"/>
                 <jsp:param name="type" value="text"/>
                 <jsp:param name="message" value="Please choose a different email"/>
@@ -40,7 +40,7 @@
     </c:choose>
     <c:choose>
         <c:when test="${requestScope.passError != null}">
-            <jsp:include page="error.jsp">
+            <jsp:include page="../partials/error.jsp">
                 <jsp:param name="id" value="password"/>
                 <jsp:param name="type" value="password"/>
                 <jsp:param name="message" value="Please choose a different password"/>
@@ -55,7 +55,7 @@
     </c:choose>
     <c:choose>
         <c:when test="${requestScope.matchError != null}">
-            <jsp:include page="error.jsp">
+            <jsp:include page="../partials/error.jsp">
                 <jsp:param name="id" value="confirm_password"/>
                 <jsp:param name="type" value="password"/>
                 <jsp:param name="message" value="Passwords do not match"/>

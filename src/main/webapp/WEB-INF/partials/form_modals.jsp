@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <h4 class="text-center px-2"> Sign In </h4>
 
-                <jsp:include page="login_form.jsp"/>
+                <jsp:include page="../sessions/login_form.jsp"/>
                 <br>
                 <p class="hint-text text-center small text text-muted">Don’t have an account?
                     <a href="/register" class="text-success" >Sign Up </a>
@@ -39,7 +39,7 @@
             <div class="modal-body">
                 <h4 class="text-center px-2"> Sign up </h4>
 
-                <jsp:include page="register_form.jsp"/>
+                <jsp:include page="../users/register_form.jsp"/>
                 <br>
                 <p class="hint-text text-center small text text-muted">Have an account?
                     <a href="/login" class="text-success" >Sign In </a>
