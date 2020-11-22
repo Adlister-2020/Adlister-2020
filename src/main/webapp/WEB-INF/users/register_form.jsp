@@ -68,9 +68,9 @@
             </div>
         </c:otherwise>
     </c:choose>
-    <div class="form-group">
-        <label for="passRecover" >Enter your secret phrase(This will be used in the case that you forget your password. We recommend using the name of a loved one or the street you grew up on.)</label>
-        <input id="passRecover" name="passRecover" class="form-control" type="text">
-    </div>
+<%--    <div class="form-group">--%>
+<%--        <label for="passRecover" >Enter your secret phrase(This will be used in the case that you forget your password. We recommend using the name of a loved one or the street you grew up on.)</label>--%>
+<%--        <input id="passRecover" name="passRecover" class="form-control" type="text">--%>
+<%--    </div>--%>
     <input type="submit" class="btn btn-primary btn-block">
 </form>

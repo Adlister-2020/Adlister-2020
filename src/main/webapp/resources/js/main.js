@@ -1,4 +1,4 @@
-// MAKE REQUEST FROM OMDB API
+// MAKE REQUEST
 const getAds = () => {
     const url = `/ads`
     return fetch(url)
@@ -10,7 +10,12 @@ const getAds = () => {
         .catch(error => console.log(error));
 }
 
-getAds();
+const getFormModal = ()=> {
+    $("#signInModal").modal("toggle");
+    $("#registerModal").modal("toggle");
+}
+
+
 
 
 

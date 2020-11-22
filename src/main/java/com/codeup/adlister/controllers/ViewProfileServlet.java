@@ -24,7 +24,6 @@ public class ViewProfileServlet extends HttpServlet {
                 callbackUrl += "?"+request.getQueryString();
             }
             request.getSession().setAttribute("callbackUrl",callbackUrl);
-            System.out.println(callbackUrl);
             response.sendRedirect("/login");
             return;
         }

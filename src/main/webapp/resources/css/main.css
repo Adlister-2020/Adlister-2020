@@ -120,7 +120,7 @@ p{
     display: none;  /* Safari and Chrome */
 }
 
-/******* Modal -or- seperator **********/
+/******* Modal **********/
 .btn-login {
     color: #fff;
     background-color: #34b6ce;
@@ -138,7 +138,7 @@ p{
     top: -11px;
     z-index: 1;
 }
-/******* !Modal or seperator **********/
+/******* !Modal **********/
 
 
 

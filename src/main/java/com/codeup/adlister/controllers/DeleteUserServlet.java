@@ -16,9 +16,7 @@ public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User current_user = (User) request.getSession().getAttribute("user");
         String endService = request.getParameter("end_service");
-        System.out.println(endService);
         String password = request.getParameter("password");
-        System.out.println(password);
         // validate input
         boolean inputHasErrors = endService == null
                 || password.isEmpty()
