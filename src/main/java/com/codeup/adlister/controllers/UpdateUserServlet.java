@@ -18,14 +18,31 @@ public class UpdateUserServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/users/update_user.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User current_user = (User) request.getSession().getAttribute("user");
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String new_password = request.getParameter("new_password");
         String passwordConfirmation = request.getParameter("confirm_password");
-        // validate input
+
+        // request from password reset
+        if(request.getSession().getAttribute("recoveryUser") != null){
+            if(!new_password.equals(passwordConfirmation)){
+                request.getRequestDispatcher("/WEB-INF/sessions/reset_password.jsp").forward(request,response);
+            }
+            current_user = (User) request.getSession().getAttribute("recoveryUser");
+            // update password on database
+            current_user.setPassword(new_password);
+            DaoFactory.getUsersDao().updateUser(current_user);
+            // remove recovery user from session and set as logged in user
+            request.getSession().removeAttribute("recoveryUser");
+            request.getSession().setAttribute("user", current_user);
+            response.sendRedirect("/profile");
+            return;
+        }
+
+        // request from update user server
         boolean inputHasErrors = username.isEmpty()
                 || email.isEmpty()
                 || (!new_password.equals(passwordConfirmation));
