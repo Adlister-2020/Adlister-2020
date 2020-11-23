@@ -15,19 +15,16 @@ import java.util.regex.Pattern;
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        request.getSession().setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
+        request.getRequestDispatcher("/WEB-INF/users/register.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String passRecover = request.getParameter("passRecover");
+//        String passRecover = request.getParameter("passRecover");
         String passwordConfirmation = request.getParameter("confirm_password");
-
-
 
         //sets the values that I want to take place in each part of the email
         String regEmail = "^[A-Z0-9._-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
@@ -38,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
         //boolean that determines if passed in email matches the pattern
         boolean emailMatch = matcher.find();
 
-//testing for errors
+        //testing for errors
         boolean hasErrors = username.isEmpty() ||
                 email.isEmpty() ||
                 !emailMatch||
@@ -46,11 +43,7 @@ public class RegisterServlet extends HttpServlet {
                 !passwordConfirmation.equals(password)||
                 DaoFactory.getUsersDao().findByUsername(username) != null;
 
-
-
-
-
-//handling specific errors
+        //handling specific errors
         boolean emptyUser = username.isEmpty();
         if(emptyUser || username == null){
             request.setAttribute("usernameError", "The username field is empty" ); //error register
@@ -73,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
 
         if(hasErrors){
             try{
-                request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/users/register.jsp").forward(request,response);
             }catch (ServletException e){
                 e.printStackTrace();
             }
@@ -81,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // create and save a new user
-        User user = new User(username, email, password, passRecover);
+        User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);
         User dbUser = DaoFactory.getUsersDao().findByUsername(user.getUsername());
         request.getSession().setAttribute("user", dbUser);

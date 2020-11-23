@@ -16,13 +16,14 @@ import java.io.IOException;
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().setAttribute("categoriesDao", DaoFactory.getCategoriesDao());
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
             return;
         }
 
         System.out.println("page has loaded");
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/sessions/login.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -52,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 
 
         if(user != null){
-             hasErrors = !Password.check(password2, user.getPassword());
+            hasErrors = !Password.check(password2, user.getPassword());
             if(!Password.check(password2, user.getPassword())){
                 request.setAttribute("loginError", "password is does not match");
                 System.out.println("password did not match");
@@ -65,18 +66,21 @@ public class LoginServlet extends HttpServlet {
         if (hasErrors) {
             try{
                 System.out.println("There was an error");
-                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/sessions/login.jsp").forward(request,response);
             }catch (ServletException e){
                 e.printStackTrace();
             }
         }
-        request.getSession().setAttribute("user", user);
 
-        if(request.getSession().getAttribute("callbackUrl")!=null){
-            response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
-            return;
+        if(!hasErrors){
+            request.getSession().setAttribute("user", user);
+            if(request.getSession().getAttribute("callbackUrl")!=null){
+                response.sendRedirect((String) request.getSession().getAttribute("callbackUrl"));
+                return;
+            }
+            response.sendRedirect("/profile");
         }
-        response.sendRedirect("/profile");
+
 
     }
 }

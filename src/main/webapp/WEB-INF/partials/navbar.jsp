@@ -5,31 +5,29 @@
         <a class="navbar-brand" href="/ads">Adlister</a>
         <div id="mobile-search"></div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li id="expanded-search" class="nav-item"></li>
-            </ul>
-            <ul class="navbar-nav text-uppercase ml-auto">
-                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+
+            <li id="expanded-search" class="nav-item"></li>
+
+            <ul class="navbar-nav text-uppercase ml-auto d-flex align-items-center justify-content-between">
+                <li class="nav-item mr-2"><a class="nav-link" href="/about">About</a></li>
                 <c:if test="${sessionScope.user.username == null}">
-                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Log in</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Login</a></li>
                 </c:if>
 
                 <c:if test="${sessionScope.user.username != null}">
-                    <li class="nav-item mr-2"><a class="nav-link" href="/ads/create">Sell</a></li>
+                    <li class="nav-item "><a class="nav-link" href="/ads/create">Sell</a></li>
                     <li class="nav-item dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                        <span class="nav-label">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                             <c:choose>
                                 <c:when test="${sessionScope.user.avatar!=null}">
-                            <img src="<c:out value="${sessionScope.user.avatar}"/>"
-                                 class="rounded-circle nav-img" style="width:30px;height:30px" alt="">
+                                    <img src="<c:out value="${sessionScope.user.avatar}"/>"
+                                 class="rounded-circle nav-img" style="width:30px;height:30px" alt=""/>
                                 </c:when>
                                 <c:otherwise>
-                                    ${sessionScope.user.username}
+                                    <c:out value="${sessionScope.user.username}"/>
                                 </c:otherwise>
                             </c:choose>
-                        </span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="/profile">Profile</a></li>
@@ -39,7 +37,7 @@
                 </c:if>
             </ul>
         </div>
-        <button class="navbar-toggler navbar-toggler-right mr-2" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-chevron-down"></i>
         </button>
     </div>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,10 +11,9 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
         <h1>Please Log In</h1>
-        <jsp:include page="partials/login_form.jsp"/>
-        <p>If you have forgotten your password, please contact us as 1+(800)-867-5309 with your secret phrase to reset your password.</p>
+        <jsp:include page="login_form.jsp"/>
     </div>
 
-
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
 </body>
 </html>

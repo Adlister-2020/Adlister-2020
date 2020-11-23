@@ -85,6 +85,8 @@
             </div>
         </article>
     </main>
-<jsp:include page="partials/footer.jsp"/>
+
+<jsp:include page="../partials/footer.jsp"/>
+
 </body>
 </html>

@@ -51,12 +51,19 @@
                 $('#searchSelect').css('width','345px');
                 $('#expanded-search').empty();
                 $('#expanded-search').css('display','none');
-            }else{
+            }else if($(window).width() > 992 && $(window).width()<1200){
                 $('#mobile-search').empty();
                 $('#mobile-search').css('display','none');
                 $('#expanded-search').html(searchForm);
                 $('#expanded-search').css('display','block');
-                $('#searchSelect').css('width','900px');
+                $('#searchSelect').css('width','600px');
+            }
+            else{
+                $('#mobile-search').empty();
+                $('#mobile-search').css('display','none');
+                $('#expanded-search').html(searchForm);
+                $('#expanded-search').css('display','block');
+                $('#searchSelect').css('width','800px');
             }
         }
 

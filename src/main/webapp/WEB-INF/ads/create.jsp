@@ -20,7 +20,7 @@
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
             <div class="form-group">
-                <label>Category(required)</label><br>
+                <label>Category(required, choose all that apply)</label><br>
                 <c:forEach var="category" items="${categories}">
                     <input type="checkbox" id="${category.getTitle()}" name="category" value="${category.getTitle()}">
                     <label for="${category.getTitle()}"><c:out value="${category.getCaplizedFirstLetterTitle()}" /></label><br>
