@@ -15,7 +15,7 @@
 
     <main class="container">
         <article class="row">
-            <aside class="col-3" id="profileColumn">
+            <aside class="col-12 col-md-3" id="profileColumn">
                 <div class="col">
                     <img src="<c:out value="${profileOwner.avatar}"/>" class="rounded-circle position-relative" width="200px;" height="200px">
                     <p class="text-center m-3"> Member since: <br><c:out value="${profileOwner.creation}"/></p>
@@ -26,62 +26,62 @@
                 </div>
             </aside>
 
-            <div class="col-8 ml-3">
+            <div class="col-12 col-md-8 ml-3">
                 <h1 class="text-center my-2">Ads</h1>
-                <c:forEach var="ad" items="${ads}">
-                    <div id="${ad.id}" class="card menu-view shadow-lg grow m-3 ">
-                        <div class="row-2 justify-content-center">
-                            <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
-                                <c:choose>
-                                    <c:when test="${fn:length(ad.getImages()) > 0}">
-                                        <img src="${ad.getImages()[0].url}" class="card-img-top" alt="..." >
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="https://via.placeholder.com/800x600.png?text=Create+Your+Own+Ad" class="card-img-top" alt="..." style="height:24rem">
-                                    </c:otherwise>
-                                </c:choose>
-                            </a>
-                            <div class="list-group list-group-flush">
-                                <div class="list-group-item card-adtitle">
-                                    <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
-                                        <h5 class="card-title"><c:out value="${ad.title}"/></h5>
-                                    </a>
-                                </div>
-                                <div class="list-group-item card-descriptions">
-                                    <p class="card-text">
-                                        <c:out value="${fn:length(ad.description) <=136  ? ad.description : fn:substring(ad.description,0, 136)}"/>
-                                    </p>
-                                </div>
-                                <div class="list-group-item card-price">
-                                    <p class="card-text font-weight-bold float-left">
-                                        $<c:out value="${ad.price}"/>
+                <div class="row justify-content-center">
+                    <c:forEach var="ad" items="${ads}">
+                        <div id="${ad.id}" class="card menu-view shadow-lg grow m-3 ">
+                                <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
+                                    <c:choose>
+                                        <c:when test="${fn:length(ad.getImages()) > 0}">
+                                            <img src="${ad.getImages()[0].url}" class="card-img-top" alt="..." >
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="https://via.placeholder.com/800x600.png?text=Create+Your+Own+Ad" class="card-img-top" alt="..." style="height:24rem">
+                                        </c:otherwise>
+                                    </c:choose>
+                                </a>
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item card-adtitle">
+                                        <a href='${pageContext.request.contextPath}/ads/ad?adId=<c:out value="${ad.id}"/>'>
+                                            <h5 class="card-title"><c:out value="${ad.title}"/></h5>
+                                        </a>
+                                    </div>
+                                    <div class="list-group-item card-descriptions">
+                                        <p class="card-text">
+                                            <c:out value="${fn:length(ad.description) <=136  ? ad.description : fn:substring(ad.description,0, 136)}"/>
+                                        </p>
+                                    </div>
+                                    <div class="list-group-item card-price">
+                                        <p class="card-text font-weight-bold float-left">
+                                            $<c:out value="${ad.price}"/>
 
-                                    </p>
-                                    <p class="card-text text-muted float-right">
-                                        <i class="fas fa-map-marker-alt"></i> <c:out value="${ad.location}"/>
-                                    </p>
+                                        </p>
+                                        <p class="card-text text-muted float-right">
+                                            <i class="fas fa-map-marker-alt"></i> <c:out value="${ad.location}"/>
+                                        </p>
+                                    </div>
+                                    <div class="list-group-item card-categories">
+                                        <c:if test="${categoriesDao.getCategoriesOfAd(ad) != null}">
+                                            <div>
+                                                <ul class="list-inline">
+                                                    <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
+                                                        <li class="list-inline-item">
+                                                        <span class="badge border border-info badge-pill ">
+                                                            <a href="<c:url value='/ads?category=${cat.getTitle()}'/>">
+                                                        <c:out value="${cat.getCaplizedFirstLetterTitle()}" />
+                                                    </a>
+                                                </span>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                        </c:if>
+                                    </div>
                                 </div>
-                                <div class="list-group-item card-categories">
-                                    <c:if test="${categoriesDao.getCategoriesOfAd(ad) != null}">
-                                        <div>
-                                            <ul class="list-inline">
-                                                <c:forEach var="cat" items="${categoriesDao.getCategoriesOfAd(ad)}">
-                                                    <li class="list-inline-item">
-                                                    <span class="badge border border-info badge-pill ">
-                                                        <a href="<c:url value='/ads?category=${cat.getTitle()}'/>">
-                                                    <c:out value="${cat.getCaplizedFirstLetterTitle()}" />
-                                                </a>
-                                            </span>
-                                                    </li>
-                                                </c:forEach>
-                                            </ul>
-                                        </div>
-                                    </c:if>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </div>
         </article>
     </main>
