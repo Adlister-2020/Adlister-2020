@@ -124,7 +124,7 @@ Make sure to set up Tomcat and MySQL correctly.
   
   19. [x] Intended Redirects
   
-  20. [ ] Mobile responsiveness
+  20. [x] Mobile responsiveness
   
   21. [x] Allow users to delete account
 </details>
@@ -150,7 +150,7 @@ Make sure to set up Tomcat and MySQL correctly.
 ### Database Design
 <details>
   <summary>Diagram</summary>
-    
+    <a href="https://github.com/Adlister-2020/Adlister-2020/blob/main/database-diagram.png">database diagram</a>
 </details>
 
 ### Contribution
