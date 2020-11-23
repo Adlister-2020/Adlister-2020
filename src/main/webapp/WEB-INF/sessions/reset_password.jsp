@@ -17,14 +17,20 @@
 <jsp:include page="../partials/navbar.jsp" />
 <div class="container">
     <h1>Please update  your information.</h1>
-    <form action="/profile/update" method="post">
+    <form action="/profile/update" method="post" class="needs-validation" novalidate>
         <div class="form-group">
             <label for="new_password">New Password</label>
-            <input id="new_password" name="new_password" class="form-control" type="password">
+            <input id="new_password" name="new_password" class="form-control" type="password" required>
+            <div class="invalid-feedback">
+                Please provide a valid password.
+            </div>
         </div>
         <div class="form-group">
             <label for="confirm_password">Confirm Password</label>
-            <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+            <input id="confirm_password" name="confirm_password" class="form-control" type="password" required>
+            <div class="invalid-feedback">
+                Password must match.
+            </div>
         </div>
         <input type="submit" class="btn btn-primary btn-block">
     </form>
