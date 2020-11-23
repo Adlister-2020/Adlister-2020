@@ -1,0 +1,21 @@
+h1,h2,h3,h4{
+   font-family: 'Oxygen', Sans-Serif, serif;
+}
+h5,h5,p{
+   Font-Family: 'Noto Serif', Serif, monospace;
+}
+p{
+   font-size: 16px;
+}
+#profileColumn {
+   background-color: #f5f5f5;
+   width: 100%;
+}
+.profileUpdate{
+   Font-Family: 'Noto Serif', Serif, monospace;
+   font-size: 16px;
+}
+.profileSettings{
+   Font-Family: 'Noto Serif', Serif, monospace;
+   font-size: 16px;
+}
