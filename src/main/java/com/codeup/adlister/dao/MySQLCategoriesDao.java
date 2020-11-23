@@ -128,6 +128,21 @@ public class MySQLCategoriesDao implements Categories {
     }
 
     @Override
+    public void updateCategory(Long categoryId, String title) {
+        try {
+            String query = "UPDATE categories SET title = ? WHERE id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,title);
+            stmt.setLong(2,categoryId);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating a category.", e);
+        }
+    }
+
+    @Override
     public long insertIntoCategories(String title){
         try {
             String query = "INSERT INTO categories(title) VALUES (?)";
@@ -141,4 +156,6 @@ public class MySQLCategoriesDao implements Categories {
             throw new RuntimeException("Error creating a new category.", e);
         }
     }
+
+
 }

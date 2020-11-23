@@ -17,7 +17,11 @@
                     <a href="/profile/update">Edit Profile</a>
                     <a href="/profile/settings">Settings</a>
                 </c:if>
-
+            <div>
+                <c:if test = "${profileOwner.role.equals(\"admin\")}">
+                    <a href="/admin" style="color: red">Admin Dashboard</a>
+                </c:if>
+            </div>
         </div>
         <h1><c:out value="${profileOwner.username}"/>!</h1>
     </div>

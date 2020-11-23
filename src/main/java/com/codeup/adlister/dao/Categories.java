@@ -23,4 +23,7 @@ public interface Categories {
 
     // seed categories
     void seedCategoriesDb();
+
+    // edit a category
+    void updateCategory(Long categoryId, String title);
 }

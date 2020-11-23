@@ -19,6 +19,7 @@
                aria-controls="nav-contact" aria-selected="false">Categories</a>
         </div>
     </nav>
+
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="user-tab" role="tabpanel" aria-labelledby="nav-home-tab">
             <table class="table table-responsive">
@@ -37,6 +38,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <th>Total Number Of Users: </th>
+                    <td>${users.size()}</td>
+                </tr>
                 <c:forEach var="user" items="${users}">
                     <tr>
                         <td>
@@ -133,7 +138,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="ad" items="ads" >
+                <tr>
+                    <th>Total Number Of Ads: </th>
+                    <td>${ads.size()}</td>
+                </tr>
+                <c:forEach var="ad" items="${ads}" >
                     <tr>
                         <td>
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
@@ -147,7 +156,7 @@
                                 Delete Ad
                             </button>
                         </td>
-                            <%-- send email to notify user --%>
+<%--                             send email to notify user--%>
                         <td><c:out value="${ad.getId()}" /></td>
                         <td><c:out value="${ad.getUserId()}" /></td>
                         <td><c:out value="${ad.getTitle()}" /></td>
@@ -214,18 +223,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="category" items="categories">
+                <tr>
+                    <th>Total Number Of Categories: </th>
+                    <td>${categories.size()}</td>
+                </tr>
+                <c:forEach var="category" items="${categories}">
                     <tr>
                         <td>
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                     data-target="#category-modal1" data-whatever="${category.getId()}"> <%-- dynamiclly generate data-whatever --%>
-                                Edit Categories
+                                Edit Category
                             </button>
                         </td>
                         <td><c:out value="${category.getId()}" /></td>
                         <td><c:out value="${category.getTitle()}" /></td>
                     </tr>
                 </c:forEach>
+                    <tr>
+                        <td><button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                    data-target="#category-modal2" data-whatever="${category.getId()}"> <%-- dynamiclly generate data-whatever --%>
+                            Add Category
+                        </button></td>
+                    </tr>
                 </tbody>
             </table>
             <div class="modal fade" id="category-modal1" tabindex="-1">
@@ -237,18 +256,44 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                            <form method="post" action="/admin">
                         <div class="modal-body">
                             <div id="category-id">Category id = </div>
-                            <form>
                                 <div class="form-group">
-                                    <label class="col-form-label">Category Title</label>
+                                    <label class="col-form-label" for="category-title">Category Title</label>
+                                    <input type="hidden" name="category-id" id="categoryID">
+                                    <input type="text" id="category-title" name="category-title">
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="category-modal2" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                            <form method="post" action="/admin">
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="category-add-title">Category Title: </label>
+                                    <input type="text" id="category-add-title" name="new-category-title">
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -277,7 +322,7 @@
         var recipient = button.data('whatever') // Extract info from data-* attributes
         var modal = $(this)
         console.log(recipient);
-        modal.find('.modal-body #user-id').text('Ad id = ' + recipient)
+        modal.find('.modal-body #ad-id').text('Ad id = ' + recipient)
     })
     $('#ad-model2').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -291,7 +336,15 @@
         var recipient = button.data('whatever') // Extract info from data-* attributes
         var modal = $(this)
         console.log(recipient);
-        modal.find('.modal-body #user-id').text('Category id = ' + recipient)
+        modal.find('.modal-body #categoryID').val(recipient);
+        modal.find('.modal-body #category-id').text('Category id = ' + recipient)
+    })
+    $('#category-modal2').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        var modal = $(this)
+        console.log(recipient);
+        modal.find('.modal-body #category-id').text('Category id = ' + recipient)
     })
 </script>
 </body>
