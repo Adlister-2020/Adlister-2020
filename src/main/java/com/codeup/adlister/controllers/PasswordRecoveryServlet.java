@@ -18,7 +18,7 @@ public class PasswordRecoveryServlet extends HttpServlet {
         String username = request.getParameter("recovery-user");
         String resetInput = request.getParameter("reset-password");
         boolean hasUsername = !username.isEmpty() && username != null;
-        boolean wantsReset = !resetInput.isEmpty() && resetInput != null;
+        boolean wantsReset = resetInput != null && resetInput.equalsIgnoreCase("1");
 
         if(!hasUsername || !wantsReset){
             response.sendRedirect("/user/recovery");
@@ -26,6 +26,7 @@ public class PasswordRecoveryServlet extends HttpServlet {
         }
         // get the recovery user from db
         User recoveryUser = DaoFactory.getUsersDao().findByUsername(username);
+        System.out.println();
         boolean userExists = recoveryUser != null;
         // if user in db try to email password recovery link
         if(userExists){
@@ -40,6 +41,9 @@ public class PasswordRecoveryServlet extends HttpServlet {
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
+        }else {
+            System.out.println("user not found");
+            response.sendRedirect("/user/recovery");
         }
     }
 
