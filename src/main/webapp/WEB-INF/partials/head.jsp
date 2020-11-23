@@ -10,3 +10,11 @@
 <!-- fontawesome-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Oxygen:300" rel="stylesheet">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="237710050613-qlg6p633f2l51c82q6fd5sp54jskf33o.apps.googleusercontent.com">

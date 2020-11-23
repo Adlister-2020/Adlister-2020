@@ -61,7 +61,12 @@
             <artifactId>javax.mail-api</artifactId>
             <version>1.6.2</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client-jackson2 -->
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client-jackson2</artifactId>
+            <version>1.31.1</version>
+        </dependency>
     </dependencies>
 
 </project>

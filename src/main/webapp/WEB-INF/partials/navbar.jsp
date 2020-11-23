@@ -31,7 +31,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link" href="/profile">Profile</a></li>
-                            <li><a class="nav-link" href="/logout">Log out</a></li>
+                            <li><a class="nav-link" href="/logout" onclick="signOut()">Log out</a></li>
                         </ul>
                     </li>
                 </c:if>

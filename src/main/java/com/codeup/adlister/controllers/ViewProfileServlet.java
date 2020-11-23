@@ -19,11 +19,11 @@ public class ViewProfileServlet extends HttpServlet {
         User profileOwner = null;
         // redirect unregistered users to login
         if (request.getSession().getAttribute("user") == null) {
-            String callbackUrl = request.getRequestURI();
-            if(!request.getQueryString().isEmpty() || request.getQueryString()!=null){
-                callbackUrl += "?"+request.getQueryString();
-            }
-            request.getSession().setAttribute("callbackUrl",callbackUrl);
+//            String callbackUrl = request.getRequestURI();
+//            if(!request.getQueryString().isEmpty() || request.getQueryString()!=null){
+//                callbackUrl += "?"+request.getQueryString();
+//            }
+//            request.getSession().setAttribute("callbackUrl",callbackUrl);
             response.sendRedirect("/login");
             return;
         }

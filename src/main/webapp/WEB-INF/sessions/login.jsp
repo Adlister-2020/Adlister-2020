@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -13,7 +14,7 @@
         <h1>Please Log In</h1>
         <jsp:include page="login_form.jsp"/>
     </div>
-
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
 </body>
 </html>
