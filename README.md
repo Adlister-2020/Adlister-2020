@@ -201,8 +201,8 @@ Make sure to set up Tomcat and MySQL correctly.
 <details>
   <summary>Thomas Levi Crowder <a href="https://github.com/ThomasCrowder703" target="_blank">GitHub</a></summary>
 
-  1.  
-  2. 
-  3. 
-  4. 
+  1.  Error messages on the login and registration forms
+  2.  Data validation for usernames/passwords/and emails
+  3.  Displaying a users ads on their profile page
+  4.  Helped construct the password recovery procedure
 </details>
